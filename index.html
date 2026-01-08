@@ -1,0 +1,1617 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Supreme Energy Solutions – BLESS Battery Life Enhancing System</title>
+
+  <meta name="description"
+    content="Supreme Energy Solutions offers BLESS – Battery Life Enhancing System to revive and extend lead-acid battery life sustainably in Tiruchirappalli and Tamil Nadu." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --secondary: #06b6d4;
+      --accent: #a78bfa;
+      --text: #1e293b;
+      /* Deep slate for light mode - highly visible */
+      --text-muted: #475569;
+      /* Darker gray for muted text */
+      --bg: #f8fafc;
+      /* Light bg */
+      --card: rgba(255, 255, 255, 0.85);
+      /* Glassy white card */
+      --card-border: rgba(59, 130, 246, 0.15);
+      --glass-bg: rgba(255, 255, 255, 0.75);
+      /* Glassy translucent */
+      --glass-border: rgba(255, 255, 255, 0.25);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      /* Soft neumorphic shadow */
+      --header-bg: rgba(248, 250, 252, 0.95);
+      /* Glassy header */
+    }
+
+    [data-theme="dark"] {
+      --text: #f1f5f9;
+      /* Soft white - highly visible */
+      --text-muted: #cbd5e1;
+      /* Light gray for muted text */
+      --bg: #0f172a;
+      /* Dark bg */
+      --card: rgba(30, 41, 59, 0.85);
+      /* Glassy slate card */
+      --card-border: rgba(59, 130, 246, 0.2);
+      --glass-bg: rgba(15, 23, 42, 0.75);
+      /* Glassy dark */
+      --glass-border: rgba(59, 130, 246, 0.25);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      /* Deeper neumorphic shadow */
+      --header-bg: rgba(15, 23, 42, 0.95);
+      /* Glassy dark header */
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      scroll-behavior: smooth;
+      transition: background 0.4s ease, color 0.4s ease;
+    }
+
+    /* Glassmorphism + Neumorphism base */
+    .glass,
+    .card,
+    #onboarding>div,
+    #upi-modal>div {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.5rem;
+      box-shadow:
+        inset 2px 2px 4px rgba(255, 255, 255, 0.2),
+        inset -2px -2px 4px rgba(0, 0, 0, 0.1),
+        var(--shadow);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .glass:hover,
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        inset 3px 3px 6px rgba(255, 255, 255, 0.3),
+        inset -3px -3px 6px rgba(0, 0, 0, 0.15),
+        0 15px 40px rgba(0, 0, 0, 0.12),
+        0 0 30px rgba(59, 130, 246, 0.2);
+    }
+
+    header {
+      background: var(--header-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--card-border);
+      transition: all 0.4s ease;
+    }
+
+    /* Text visibility fix - non-rainbow only */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6:not(.rainbow-gradient) {
+      color: var(--text);
+    }
+
+    p,
+    span,
+    label,
+    a,
+    li,
+    div:not(.rainbow-gradient),
+    .text-muted {
+      color: var(--text-muted);
+    }
+
+    /* Input/textarea in both modes */
+    input,
+    textarea,
+    select {
+      background: var(--glass-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.05), inset -1px -1px 3px rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--primary);
+      box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.08), 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+
+    /* Button neumorphism + glass */
+    button:not(.rainbow-gradient) {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow), inset 1px 1px 3px rgba(255, 255, 255, 0.2);
+      color: var(--text);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    button:hover:not(.rainbow-gradient) {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow), inset 2px 2px 4px rgba(255, 255, 255, 0.3), 0 0 20px rgba(59, 130, 246, 0.15);
+    }
+
+    button:active:not(.rainbow-gradient) {
+      transform: translateY(0px);
+      box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.6);
+    }
+
+    /* Force rainbow animation to work everywhere + readable fallback */
+    .rainbow-gradient {
+      background: linear-gradient(90deg, #ff6b6b, #ff8e53, #ffcc00, #a8e063, #4facfe, #a78bfa) !important;
+      background-size: 200% 200% !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+      color: transparent !important;
+      animation: rainbowFlow 12s ease infinite !important;
+    }
+
+    @keyframes rainbowFlow {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Fallback if animation fails (readable text) */
+    @supports not (background-clip: text) {
+      .rainbow-gradient {
+        background: none !important;
+        color: var(--primary) !important;
+        -webkit-text-fill-color: var(--primary) !important;
+      }
+    }
+
+    /* Smooth hover */
+    .hover-subtle {
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .hover-subtle:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: var(--shadow), 0 0 30px rgba(59, 130, 246, 0.25);
+    }
+
+    /* Responsive row layout for calculator + contact */
+    .grid-cols-2>section {
+      min-height: 600px;
+      /* Ensures both columns have similar height */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    @media (max-width: 1024px) {
+      .lg\:grid-cols-2 {
+        grid-template-columns: 1fr;
+        /* Stack on tablet/mobile */
+      }
+    }
+
+    /* Force override all slate text classes to use theme colors */
+    [data-theme="light"] .text-slate-200,
+    [data-theme="light"] .text-slate-300,
+    [data-theme="light"] .text-slate-400,
+    [data-theme="light"] .text-slate-500,
+    [data-theme="light"] .text-slate-600,
+    [data-theme="light"] .text-muted,
+    [data-theme="light"] p:not(.rainbow-gradient),
+    [data-theme="light"] span:not(.rainbow-gradient),
+    [data-theme="light"] label,
+    [data-theme="light"] div:not(.rainbow-gradient) {
+      color: var(--text) !important;
+    }
+
+    /* Dark mode already uses --text (soft white) so no override needed */
+    [data-theme="dark"] .text-slate-* {
+      color: var(--text) !important;
+    }
+
+    /* Force-fix grey text in light mode for all key sections */
+    [data-theme="light"] .product-card,
+    [data-theme="light"] .card,
+    [data-theme="light"] .testimonial-card,
+    [data-theme="light"] .how-it-works-card,
+    /* [data-theme="light"] .hero-content, */
+    [data-theme="light"] .hero-content p,
+
+    /* Cards background & border fix */
+    [data-theme="light"] .bg-slate-900\/70,
+    [data-theme="light"] .bg-slate-800\/50,
+    [data-theme="light"] .bg-slate-900\/30 {
+      background: rgba(241, 245, 249, 0.95) !important;
+      /* slate-50 with opacity */
+      border-color: rgba(203, 213, 225, 0.6) !important;
+      /* slate-300 */
+    }
+
+    /* Testimonials & carousel text fix */
+    [data-theme="light"] .carousel-inner p,
+    [data-theme="light"] .carousel-inner span,
+    [data-theme="light"] .testimonial-card p {
+      color: #0f172a !important;
+    }
+
+    [data-theme="light"] .text-slate-300,
+    [data-theme="light"] .text-slate-400 {
+      color: #475569 !important;
+      /* Darker slate for visibility */
+    }
+
+    [data-theme="light"] .bg-slate-900\/30,
+    [data-theme="light"] .bg-slate-900\/20,
+    [data-theme="light"] .bg-slate-900\/50,
+    [data-theme="light"] .bg-slate-900\/60,
+    [data-theme="light"] .bg-slate-900\/70 {
+      background: rgba(241, 245, 249, 0.8) !important;
+      /* Light slate tint */
+      color: #0f172a !important;
+      /* Dark text for contrast */
+    }
+
+    /* Hero description text fix */
+    [data-theme="light"] .hero-content p {
+      color: #1e293b !important;
+      /* Deep slate - fully visible */
+    }
+
+    /* How BLESS Works section backgrounds */
+    [data-theme="light"] #how-it-works .bg-slate-900\/70 {
+      background: rgba(241, 245, 249, 0.9) !important;
+      color: #0f172a !important;
+    }
+
+    /* FAQs section backgrounds */
+    [data-theme="light"] #faqs .bg-slate-900\/20,
+    [data-theme="light"] #faqs .accordion-item {
+      background: rgba(241, 245, 249, 0.95) !important;
+      color: #0f172a !important;
+      border-color: rgba(203, 213, 225, 0.6) !important;
+    }
+
+    /* Testimonials section backgrounds */
+    [data-theme="light"] #testimonials .bg-slate-900\/20,
+    [data-theme="light"] #testimonials .testimonial-card,
+    [data-theme="light"] #testimonials .carousel-item {
+      background: rgba(241, 245, 249, 0.95) !important;
+      color: #0f172a !important;
+    }
+
+    /* General slate text override */
+    [data-theme="light"] [class*="text-slate-"] {
+      color: #1e293b !important;
+      /* Default to deep slate */
+    }
+
+    /* Preserve rainbow */
+    [data-theme="light"] .rainbow-gradient {
+      color: transparent !important;
+      /* Keep gradient effect */
+    }
+
+    #mobile-menu {
+      transform: translateX(100%);
+      transition: transform 0.5s ease-in-out;
+    }
+
+    #mobile-menu.translate-x-0 {
+      transform: translateX(0);
+    }
+
+    /* Elementor-style footer polish */
+    footer .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow);
+    }
+
+    footer h4 {
+      color: var(--text);
+    }
+
+    footer ul li a {
+      color: var(--text-muted);
+      transition: color 0.3s ease;
+    }
+
+    footer ul li a:hover {
+      color: var(--primary);
+    }
+
+    /* Table theme fix */
+    table thead {
+      background: linear-gradient(to right, rgba(59, 130, 246, 0.2), rgba(6, 182, 212, 0.2));
+      color: var(--text);
+    }
+
+    table tbody tr {
+      background: var(--card);
+      color: var(--text);
+    }
+
+    table td,
+    table th {
+      border-color: var(--card-border);
+    }
+
+    /* Parallax effect */
+    .parallax-layer {
+      will-change: transform;
+      transition: transform 0.3s ease-out;
+    }
+
+    .hero {
+      overflow: hidden;
+    }
+
+    #hero-bg-container {
+      position: absolute;
+      inset: 0;
+      transform: translateY(0);
+    }
+
+    /* Tooltips */
+    [title] {
+      position: relative;
+    }
+
+    [title]:hover::after {
+      content: attr(title);
+      position: absolute;
+      bottom: 120%;
+      left: 50%;
+      transform: translateX(-50%);
+      bg: var(--glass-bg);
+      color: var(--text);
+      padding: 0.5rem 1rem;
+      rounded: 1rem;
+      white-space: nowrap;
+      shadow: var(--shadow);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    [title]:hover::after {
+      opacity: 1;
+    }
+
+    /* Sticky WhatsApp button responsive */
+    @media (max-width: 768px) {
+      a[href^="https://wa.me"] {
+        bottom: 80px;
+        /* Above sticky CTA */
+      }
+    }
+
+    .logo-container {
+      background: white !important;
+      border-color: #e2e8f0 !important;
+    }
+
+    [data-theme="dark"] .logo-container {
+      background: white !important;
+      border-color: #e2e8f0 !important;
+    }
+
+    .order-now {
+      border-radius: 9999px;
+      /* fully rounded */
+      border: 2px solid var(--primary);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding: 1rem 2.5rem;
+      font-weight: 700;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    }
+
+    .order-now:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.5);
+      border-color: var(--secondary);
+    }
+
+    .hover-subtle {
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .hover-subtle:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: var(--shadow), 0 0 30px rgba(59, 130, 246, 0.25);
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#main-content"
+    class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-white dark:focus:bg-slate-800 focus:text-[var(--primary)] focus:px-4 focus:py-2 focus:rounded focus:shadow-lg">
+    Skip to main content
+  </a>
+
+  <main id="main-content" class="min-h-screen">
+    <!-- Header – smaller text, restored logo box -->
+    <header id="header"
+      class="fixed top-0 left-0 right-0 z-50 bg-[var(--header-bg)] backdrop-blur-2xl border-b border-[var(--glass-border)] shadow-sm transition-all duration-300">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="#"
+          class="flex items-center logo-container bg-white px-4 py-2 rounded-full shadow-md border border-slate-200 hover:shadow-lg transition-all">
+          <img src="assets/images/supreme-logo.png" alt="Supreme Energy Solutions" class="logo-img h-9 md:h-11"
+            loading="lazy" />
+        </a>
+
+        <!-- Navigation – smaller, centered alignment -->
+        <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-base font-medium">
+          <a href="#"
+            class="nav-link text-[var(--text)] hover:text-[var(--primary)] transition px-3 py-2 rounded-lg hover:bg-[var(--glass-bg)]/50">Home</a>
+          <a href="#products"
+            class="nav-link text-[var(--text)] hover:text-[var(--primary)] transition px-3 py-2 rounded-lg hover:bg-[var(--glass-bg)]/50">Products</a>
+          <a href="#how-it-works"
+            class="nav-link text-[var(--text)] hover:text-[var(--primary)] transition px-3 py-2 rounded-lg hover:bg-[var(--glass-bg)]/50">How
+            It Works</a>
+          <a href="#faqs"
+            class="nav-link text-[var(--text)] hover:text-[var(--primary)] transition px-3 py-2 rounded-lg hover:bg-[var(--glass-bg)]/50">FAQs</a>
+          <a href="#about"
+            class="nav-link text-[var(--text)] hover:text-[var(--primary)] transition px-3 py-2 rounded-lg hover:bg-[var(--glass-bg)]/50">About</a>
+          <a href="#contact"
+            class="nav-link text-[var(--text)] hover:text-[var(--primary)] transition px-3 py-2 rounded-lg hover:bg-[var(--glass-bg)]/50">Contact</a>
+        </nav>
+
+        <!-- Theme toggle – aligned, swanky, no floating -->
+        <div class="flex items-center gap-4">
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" id="theme-toggle" class="sr-only peer">
+            <div
+              class="w-12 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:bg-gray-700 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gradient-to-r peer-checked:from-blue-500 peer-checked:to-cyan-500">
+            </div>
+          </label>
+
+          <!-- Mobile toggle -->
+          <button id="menu-toggle" class="md:hidden text-[var(--text)] text-2xl focus:outline-none">
+            ☰
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+      class="fixed inset-0 bg-black/95 backdrop-blur-xl z-[9999] flex flex-col items-center justify-center gap-8 transform translate-x-full transition-transform duration-500">
+      <button id="menu-close" class="absolute top-8 right-8 text-white text-5xl focus:outline-none">×</button>
+      <a href="#" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">Home</a>
+      <a href="#products" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">Products</a>
+      <a href="#how-it-works" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">How It
+        Works</a>
+      <a href="#faqs" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">FAQs</a>
+      <a href="#about" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">About</a>
+      <a href="#contact" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">Contact</a>
+    </div>
+
+    <!-- Onboarding Overlay -->
+    <div id="onboarding" class="hidden fixed inset-0 bg-black/90 z-[9999] flex items-center justify-center">
+      <div
+        class="bg-slate-900/95 backdrop-blur-xl p-8 rounded-2xl max-w-md w-[90%] border border-slate-700/50 shadow-2xl">
+        <h2 class="text-3xl font-bold mb-6 rainbow-gradient text-center">Welcome to Supreme Energy Solutions</h2>
+        <p class="text-slate-300 mb-6 text-center">Select your district to continue:</p>
+        <select id="location-select"
+          class="w-full p-4 bg-slate-800 border border-slate-600 rounded-xl text-white focus:outline-none focus:border-blue-500 text-lg">
+          <option value="" disabled selected>Choose District</option>
+          <option value="Ariyalur">Ariyalur</option>
+          <option value="Chengalpattu">Chengalpattu</option>
+          <option value="Chennai">Chennai</option>
+          <option value="Coimbatore">Coimbatore</option>
+          <option value="Cuddalore">Cuddalore</option>
+          <option value="Dharmapuri">Dharmapuri</option>
+          <option value="Dindigul">Dindigul</option>
+          <option value="Erode">Erode</option>
+          <option value="Kallakurichi">Kallakurichi</option>
+          <option value="Kanchipuram">Kanchipuram</option>
+          <option value="Kanyakumari">Kanyakumari</option>
+          <option value="Karur">Karur</option>
+          <option value="Krishnagiri">Krishnagiri</option>
+          <option value="Madurai">Madurai</option>
+          <option value="Mayiladuthurai">Mayiladuthurai</option>
+          <option value="Nagapattinam">Nagapattinam</option>
+          <option value="Namakkal">Namakkal</option>
+          <option value="Nilgiris">Nilgiris</option>
+          <option value="Perambalur">Perambalur</option>
+          <option value="Pudukkottai">Pudukkottai</option>
+          <option value="Ramanathapuram">Ramanathapuram</option>
+          <option value="Ranipet">Ranipet</option>
+          <option value="Salem">Salem</option>
+          <option value="Sivaganga">Sivaganga</option>
+          <option value="Tenkasi">Tenkasi</option>
+          <option value="Thanjavur">Thanjavur</option>
+          <option value="Theni">Theni</option>
+          <option value="Thoothukudi">Thoothukudi</option>
+          <option value="Tiruchirappalli">Tiruchirappalli</option>
+          <option value="Tirunelveli">Tirunelveli</option>
+          <option value="Tirupathur">Tirupathur</option>
+          <option value="Tiruppur">Tiruppur</option>
+          <option value="Tiruvallur">Tiruvallur</option>
+          <option value="Tiruvannamalai">Tiruvannamalai</option>
+          <option value="Tiruvarur">Tiruvarur</option>
+          <option value="Vellore">Vellore</option>
+          <option value="Viluppuram">Viluppuram</option>
+          <option value="Virudhunagar">Virudhunagar</option>
+          <option value="soon" disabled>Bengaluru (Coming Soon)</option>
+          <option value="soon" disabled>Tumkur (Coming Soon)</option>
+        </select>
+        <div id="snackbar" class="mt-6 p-4 bg-red-600/90 rounded-xl text-center hidden">Coming Soon!</div>
+      </div>
+    </div>
+
+    <!-- Hero -->
+    <section id="hero"
+      class="hero relative min-h-[80vh] md:min-h-screen flex items-center animate-on-scroll parallax-layer">
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-black/35 z-10"></div>
+        <img id="hero-bg" src="assets/images/hero-bg-1.webp" alt="Background"
+          class="w-full h-full object-cover transition-opacity duration-1500" loading="lazy" />
+      </div>
+      <div class="hero-content relative z-20 max-w-5xl mx-auto px-6 text-center">
+        <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-6 leading-tight rainbow-gradient">
+          Revive your batteries.<br>
+          <span class="animate-float">Extend life sustainably.</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-[var(--text-muted)] max-w-3xl mx-auto mb-10">
+          BLESS – external desulfation technology that restores capacity, cuts replacement costs, and supports a greener
+          future.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-6 justify-center">
+          <button class="cta px-10 py-5 text-xl order-now">Order Now</button>
+          <button
+            class="px-10 py-5 bg-slate-800/80 border border-slate-600 rounded-xl text-xl font-semibold hover:bg-slate-700 transition"
+            onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})">Learn More</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-16 px-6 bg-slate-900/50 animate-on-scroll parallax-layer">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 rainbow-gradient">How BLESS Works</h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="glass p-8 text-center animate-on-scroll">
+            <h3 class="text-2xl font-bold mb-4 text-blue-400">1. Detection</h3>
+            <p class="text-slate-300">Micro-controlled device detects sulphation on battery plates without disassembly.
+            </p>
+          </div>
+          <div class="glass p-8 text-center animate-on-scroll">
+            <h3 class="text-2xl font-bold mb-4 text-cyan-400">2. Pulse Application</h3>
+            <p class="text-slate-300">Emits precise electronic pulses to dissolve sulphate crystals and restore active
+              material.</p>
+          </div>
+          <div class="glass p-8 text-center animate-on-scroll">
+            <h3 class="text-2xl font-bold mb-4 text-teal-400">3. Prevention & Maintenance</h3>
+            <p class="text-slate-300">Prevents future sulphation, extends battery life 2–3×, and reduces replacement
+              costs.</p>
+          </div>
+        </div>
+        <div class="mt-12 text-center">
+          <button class="cta px-10 py-5 text-xl order-now">Order Now</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products"
+      class="py-16 px-6 bg-slate-900/30 border-y border-slate-800/50 animate-on-scroll parallax-layer">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 rainbow-gradient">Our Products</h2>
+
+        <!-- Our Products Table – theme-aware -->
+        <div class="overflow-x-auto mb-12">
+          <table class="w-full text-left border-collapse glass rounded-xl overflow-hidden shadow-md">
+            <thead class="bg-gradient-to-r from-[var(--primary)]/20 to-[var(--secondary)]/20 backdrop-blur-sm">
+              <tr>
+                <th class="p-4 border-b border-[var(--card-border)] font-semibold text-[var(--text)]">Feature</th>
+                <th class="p-4 border-b border-[var(--card-border)] text-center font-semibold text-[var(--text)]">BLESS
+                  BL12165</th>
+                <th class="p-4 border-b border-[var(--card-border)] text-center font-semibold text-[var(--text)]">BLESS
+                  BL12200</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- your rows here – add class="text-[var(--text)]" to td if needed -->
+              <tr class="bg-[var(--card)]/50 hover:bg-[var(--card)]/80 transition-colors">
+                <td class="p-4 border-b border-[var(--card-border)]">Recommended Capacity</td>
+                <td class="p-4 border-b border-[var(--card-border)] text-center">Up to 165Ah</td>
+                <td class="p-4 border-b border-[var(--card-border)] text-center">Up to 200Ah</td>
+              </tr>
+              <tr class="bg-[var(--card)]/50 hover:bg-[var(--card)]/80 transition-colors">
+                <td class="p-4 border-b border-[var(--card-border)]">Ideal For</td>
+                <td class="p-4 border-b border-[var(--card-border)] text-center">Home inverters, small solar systems
+                </td>
+                <td class="p-4 border-b border-[var(--card-border)] text-center">E-rickshaws, larger inverters,
+                  commercial
+                  use</td>
+              </tr>
+              <tr class="bg-[var(--card)]/50 hover:bg-[var(--card)]/80 transition-colors">
+                <td class="p-4 border-b border-[var(--card-border)]">Price (incl. GST)</td>
+                <td class="p-4 border-b border-[var(--card-border)] text-center text-blue-400">₹3,500</td>
+                <td class="p-4 border-b border-[var(--card-border)] text-center text-cyan-400">₹4,000</td>
+              </tr>
+              <tr class="bg-[var(--card)]/50 hover:bg-[var(--card)]/80 transition-colors">
+                <td class="p-4">Expected Life Extension</td>
+                <td class="p-4 text-center">2–3×</td>
+                <td class="p-4 text-center">2–3×</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          <div
+            class="product-card glass p-8 bg-slate-900/70 border border-slate-700 rounded-2xl p-8 text-center animate-on-scroll">
+            <img src="assets/images/ble12165.webp" alt="BLESS BL12165"
+              class="mx-auto h-48 w-auto mb-6 rounded-xl shadow-xl" loading="lazy" />
+            <h3 class="text-3xl font-bold mb-4 rainbow-gradient">BLESS BL12165</h3>
+            <p class="text-xl text-slate-300 mb-4">Up to 165Ah</p>
+            <p class="text-4xl font-bold text-blue-400">₹3,500 <span class="text-xl font-normal text-slate-400">+
+                GST</span></p>
+            <button
+              class="w-full py-5 mt-6 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl text-xl font-bold hover:opacity-90 order-now">Order
+              Now</button>
+          </div>
+          <div
+            class="product-card glass p-8 bg-slate-900/70 border border-slate-700 rounded-2xl p-8 text-center animate-on-scroll">
+            <img src="assets/images/ble12200.webp" alt="BLESS BL12200"
+              class="mx-auto h-48 w-auto mb-6 rounded-xl shadow-xl" loading="lazy" />
+            <h3 class="text-3xl font-bold mb-4 rainbow-gradient">BLESS BL12200</h3>
+            <p class="text-xl text-slate-300 mb-4">Up to 200Ah</p>
+            <p class="text-4xl font-bold text-cyan-400">₹4,000 <span class="text-xl font-normal text-slate-400">+
+                GST</span></p>
+            <button
+              class="w-full py-5 mt-6 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-xl text-xl font-bold hover:opacity-90 order-now">Order
+              Now</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Us -->
+    <section id="about" class="py-16 px-6 bg-slate-900/30 animate-on-scroll parallax-layer">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 rainbow-gradient">About Us</h2>
+        <div class="text-center max-w-3xl mx-auto mb-10">
+          <p class="text-xl text-slate-300 mb-6">Pioneering sustainable battery revival with BLESS – reducing
+            replacement
+            costs and environmental impact across Tamil Nadu.</p>
+        </div>
+        <div class="grid md:grid-cols-4 gap-8">
+          <div class="team-card bg-slate-900/70 border border-slate-700 rounded-2xl p-6 text-center animate-on-scroll">
+            <img src="assets/images/team-1.webp" alt="K V R Lakshminarayanan"
+              class="w-32 h-32 mx-auto mb-4 rounded-full object-cover border-4 border-blue-500/30" loading="lazy" />
+            <h3 class="text-xl font-bold text-blue-400">K V R Lakshminarayanan</h3>
+            <p class="text-slate-400">Co-founder & COO</p>
+            <p class="text-sm text-slate-300 mt-2">42+ years in Boiler & Power Plant industries</p>
+          </div>
+          <div class="team-card bg-slate-900/70 border border-slate-700 rounded-2xl p-6 text-center animate-on-scroll">
+            <img src="assets/images/team-2.webp" alt="C Selva Kumar"
+              class="w-32 h-32 mx-auto mb-4 rounded-full object-cover border-4 border-cyan-500/30" loading="lazy" />
+            <h3 class="text-xl font-bold text-cyan-400">C Selva Kumar</h3>
+            <p class="text-slate-400">Co-founder & CTO</p>
+            <p class="text-sm text-slate-300 mt-2">40 years in Boiler Design & Engineering</p>
+          </div>
+          <div class="team-card bg-slate-900/70 border border-slate-700 rounded-2xl p-6 text-center animate-on-scroll">
+            <img src="assets/images/team-3.webp" alt="P V Krishna Kumar"
+              class="w-32 h-32 mx-auto mb-4 rounded-full object-cover border-4 border-teal-500/30" loading="lazy" />
+            <h3 class="text-xl font-bold text-teal-400">P V Krishna Kumar</h3>
+            <p class="text-slate-400">Co-founder & CMO</p>
+            <p class="text-sm text-slate-300 mt-2">Power plant & boiler marketing expert</p>
+          </div>
+          <div class="team-card bg-slate-900/70 border border-slate-700 rounded-2xl p-6 text-center animate-on-scroll">
+            <img src="assets/images/team-4.webp" alt="R C Centhil Kumar"
+              class="w-32 h-32 mx-auto mb-4 rounded-full object-cover border-4 border-purple-500/30" loading="lazy" />
+            <h3 class="text-xl font-bold text-purple-400">R C Centhil Kumar</h3>
+            <p class="text-slate-400">General Manager</p>
+            <p class="text-sm text-slate-300 mt-2">DIT Manipal – operations & management</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQs -->
+    <section id="faqs" class="py-16 px-6 bg-slate-900/20 animate-on-scroll parallax-layer">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 rainbow-gradient">Frequently Asked Questions</h2>
+        <div class="space-y-4">
+          <div class="accordion-item glass rounded-xl overflow-hidden hover-subtle">
+            <button
+              class="accordion-header w-full text-left p-6 flex justify-between items-center hover:bg-slate-800/50 transition">
+              <span class="text-lg font-medium">How is the Battery Life Enhancer installed?</span>
+              <span class="text-blue-400 text-xl">+</span>
+            </button>
+            <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500">
+              <p class="p-6 text-slate-300">The device is installed directly onto the battery terminals under trained
+                supervision. Self-installation is not recommended.</p>
+            </div>
+          </div>
+          <div class="accordion-item glass rounded-xl overflow-hidden hover-subtle">
+            <button
+              class="accordion-header w-full text-left p-6 flex justify-between items-center hover:bg-slate-800/50 transition">
+              <span class="text-lg font-medium">Does it interfere with the battery warranty?</span>
+              <span class="text-blue-400 text-xl">+</span>
+            </button>
+            <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500">
+              <p class="p-6 text-slate-300">No, it operates externally and does not alter the internal structure or
+                chemistry of the battery.</p>
+            </div>
+          </div>
+          <div class="accordion-item glass rounded-xl overflow-hidden hover-subtle">
+            <button
+              class="accordion-header w-full text-left p-6 flex justify-between items-center hover:bg-slate-800/50 transition">
+              <span class="text-lg font-medium">Which types of batteries can it be used with?</span>
+              <span class="text-blue-400 text-xl">+</span>
+            </button>
+            <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500">
+              <p class="p-6 text-slate-300">The device is designed exclusively for lead-acid batteries, including
+                flooded,
+                AGM, and gel types.</p>
+            </div>
+          </div>
+          <div class="accordion-item glass rounded-xl overflow-hidden hover-subtle">
+            <button
+              class="accordion-header w-full text-left p-6 flex justify-between items-center hover:bg-slate-800/50 transition">
+              <span class="text-lg font-medium">Can it work on deeply discharged batteries?</span>
+              <span class="text-blue-400 text-xl">+</span>
+            </button>
+            <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500">
+              <p class="p-6 text-slate-300">Yes, the device can help revive deeply discharged batteries by dissolving
+                sulphation and restoring capacity.</p>
+            </div>
+          </div>
+          <div class="accordion-item glass rounded-xl overflow-hidden hover-subtle">
+            <button
+              class="accordion-header w-full text-left p-6 flex justify-between items-center hover:bg-slate-800/50 transition">
+              <span class="text-lg font-medium">How long does it take to see results?</span>
+              <span class="text-blue-400 text-xl">+</span>
+            </button>
+            <div class="accordion-content max-h-0 overflow-hidden transition-all duration-500">
+              <p class="p-6 text-slate-300">Visible improvement in 1–4 weeks depending on battery condition and usage.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-16 px-6 bg-slate-900/20 animate-on-scroll parallax-layer">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 rainbow-gradient">What Our Customers Say</h2>
+        <div class="carousel max-w-5xl mx-auto overflow-hidden hover-subtle">
+          <div class="carousel-inner flex transition-transform duration-700 ease-in-out" id="carousel-inner">
+            <div class="carousel-item min-w-full px-4">
+              <div class="testimonial-card glass p-8 text-center hover-subtle">
+                <div class="flex items-center justify-center mb-4">
+                  <div class="w-16 h-16 rounded-full bg-slate-600 mr-4"></div>
+                  <div>
+                    <p class="font-semibold text-xl">Ramesh Kumar</p>
+                    <p class="text-slate-400">E-Rickshaw Operator, Trichy</p>
+                  </div>
+                </div>
+                <div class="text-4xl text-yellow-400 mb-4">★★★★★</div>
+                <p class="text-slate-300 italic text-lg">"After 18 months, my battery is still at 85% capacity! BLESS
+                  saved me from buying a new one every year. Truly a life-saver for my fleet."</p>
+              </div>
+            </div>
+            <div class="carousel-item min-w-full px-4">
+              <div class="testimonial-card glass p-8 text-center hover-subtle">
+                <div class="flex items-center justify-center mb-4">
+                  <div class="w-16 h-16 rounded-full bg-slate-600 mr-4"></div>
+                  <div>
+                    <p class="font-semibold text-xl">Priya Menon</p>
+                    <p class="text-slate-400">Solar Installer, Coimbatore</p>
+                  </div>
+                </div>
+                <div class="text-4xl text-yellow-400 mb-4">★★★★★</div>
+                <p class="text-slate-300 italic text-lg">"Our solar backup doubled after just 8 weeks. Customers are
+                  thrilled and we now recommend BLESS to every lead-acid user."</p>
+              </div>
+            </div>
+            <div class="carousel-item min-w-full px-4">
+              <div class="testimonial-card glass p-8 text-center hover-subtle">
+                <div class="flex items-center justify-center mb-4">
+                  <div class="w-16 h-16 rounded-full bg-slate-600 mr-4"></div>
+                  <div>
+                    <p class="font-semibold text-xl">Vikram Singh</p>
+                    <p class="text-slate-400">Homeowner, Madurai</p>
+                  </div>
+                </div>
+                <div class="text-4xl text-yellow-400 mb-4">★★★★★</div>
+                <p class="text-slate-300 italic text-lg">"Saved over ₹1.5 lakh in two years. Inverter battery that used
+                  to
+                  die every 18 months is now lasting 4+ years. Worth every rupee!"</p>
+              </div>
+            </div>
+            <div class="carousel-item min-w-full px-4">
+              <div class="testimonial-card glass p-8 text-center hover-subtle">
+                <div class="flex items-center justify-center mb-4">
+                  <div class="w-16 h-16 rounded-full bg-slate-600 mr-4"></div>
+                  <div>
+                    <p class="font-semibold text-xl">Senthil Kumar</p>
+                    <p class="text-slate-400">Logistics Manager, Salem</p>
+                  </div>
+                </div>
+                <div class="text-4xl text-yellow-400 mb-4">★★★★★</div>
+                <p class="text-slate-300 italic text-lg">"Fleet maintenance costs dropped 55%. No more mid-day
+                  breakdowns.
+                  BLESS is now standard in all our vehicles."</p>
+              </div>
+            </div>
+            <div class="carousel-item min-w-full px-4">
+              <div class="testimonial-card glass p-8 text-center hover-subtle">
+                <div class="flex items-center justify-center mb-4">
+                  <div class="w-16 h-16 rounded-full bg-slate-600 mr-4"></div>
+                  <div>
+                    <p class="font-semibold text-xl">Anitha R</p>
+                    <p class="text-slate-400">Small Business Owner, Chennai</p>
+                  </div>
+                </div>
+                <div class="text-4xl text-yellow-400 mb-4">★★★★★</div>
+                <p class="text-slate-300 italic text-lg">"I was skeptical at first, but after 3 months my old battery is
+                  performing better than when it was new. Amazing product!"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Combined row: Battery Calculator + Get in Touch -->
+    <div class="py-16 px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+      <!-- Battery Life Calculator -->
+      <section class="animate-on-scroll parallax-layer">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 rainbow-gradient">Battery Life Calculator</h2>
+        <div class="max-w-lg mx-auto">
+          <section class="py-16 px-6 animate-on-scroll">
+            <div class="max-w-lg mx-auto glass p-8 rounded-2xl">
+              <div class="space-y-6">
+                <div>
+                  <label class="block text-slate-300 mb-2">Current Age (months)</label>
+                  <input type="number" id="age" min="0"
+                    class="w-full p-4 bg-slate-800 border border-slate-600 rounded-xl text-white focus:outline-none focus:border-blue-500"
+                    placeholder="e.g. 18">
+                </div>
+                <div>
+                  <label class="block text-slate-300 mb-2">Daily Usage (hours)</label>
+                  <input type="number" id="hours" min="0"
+                    class="w-full p-4 bg-slate-800 border border-slate-600 rounded-xl text-white focus:outline-none focus:border-blue-500"
+                    placeholder="e.g. 8">
+                </div>
+                <div>
+                  <label class="block text-slate-300 mb-2">Capacity (Ah)</label>
+                  <input type="number" id="ah" min="0"
+                    class="w-full p-4 bg-slate-800 border border-slate-600 rounded-xl text-white focus:outline-none focus:border-blue-500"
+                    placeholder="e.g. 100">
+                </div>
+                <div>
+                  <label class="block text-slate-300 mb-2">Average Temperature (°C)</label>
+                  <input type="number" id="temp"
+                    class="w-full p-4 bg-slate-800 border border-slate-600 rounded-xl text-white focus:outline-none focus:border-blue-500"
+                    placeholder="e.g. 25">
+                </div>
+                <div>
+                  <label class="block text-slate-300 mb-2">Average Depth of Discharge (%)</label>
+                  <input type="number" id="dod" min="0" max="100"
+                    class="w-full p-4 bg-slate-800 border border-slate-600 rounded-xl text-white focus:outline-none focus:border-blue-500"
+                    placeholder="e.g. 50">
+                </div>
+                <button id="calc-btn"
+                  class="w-full py-4 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl font-semibold hover:opacity-90 transition-opacity">Calculate
+                  Extension</button>
+                <div id="calc-result" class="text-center text-lg font-semibold mt-6"></div>
+                <div id="progress" class="progress-bar hidden">
+                  <div class="progress-fill"></div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <!-- Get in Touch -->
+      <section id="contact" class="animate-on-scroll parallax-layer">
+
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 rainbow-gradient">Get in Touch</h2>
+        <section id="contact" class="py-16 px-6  animate-on-scroll">
+          <p class="text-xl text-slate-300 mb-8">Questions? Ready to revive your batteries? Reach out directly.</p>
+
+          <!-- Battery image with hover animation + Order Now buttons -->
+          <div class="my-12 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+            <!-- <button class="order-now px-10 py-5 text-xl bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl font-bold hover:opacity-90 transition hover:scale-105 shadow-lg">
+                Order Now
+              </button> -->
+
+            <div class="relative group w-64 md:w-80">
+              <img src="assets/images/bless-battery-device.jpg"
+                alt="BLESS Battery Life Enhancing System - Don't Change Battery"
+                class="w-full h-auto rounded-2xl shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:rotate-2 group-hover:shadow-[0_25px_50px_-12px_rgba(59,130,246,0.5)]"
+                loading="lazy" />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-center pb-6">
+                <p class="text-white text-lg font-bold">Don't Change Battery – BLESS It!</p>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="flex flex-col items-center gap-2 mb-12">
+            <button
+              class="order-now px-10 py-5 text-xl bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl font-bold hover:opacity-90 transition hover:scale-105 shadow-lg">
+              Order Now
+            </button>
+            <p class="text-lg mb-2">Call / WhatsApp:</p>
+            <a href="tel:+919818693338"
+              class="text-3xl font-bold text-blue-400 hover:text-blue-300 transition hover-subtle">+91 9818693338</a>
+
+            <p class="text-lg mt-6 mb-2">Email:</p>
+            <a href="mailto:krish@supremeenergysolutions.co.in"
+              class="text-2xl text-blue-400 hover:text-blue-300 transition hover-subtle">krish@supremeenergysolutions.co.in</a>
+          </div>
+        </section>
+      </section>
+    </div>
+
+    <!-- Footer – Oxyboosters-inspired style -->
+    <footer
+      class="py-12 px-6 bg-[var(--glass-bg)] backdrop-blur-xl border-t border-[var(--glass-border)] text-center text-[var(--text-muted)] addEventListener parallax-layer">
+      <div class="max-w-6xl mb-10 mx-auto glass p-8 rounded-2xl">
+        <!-- Google Maps Embed -->
+        <h3 class="text-2xl font-semibold mb-6 text-slate-200">Our Location</h3>
+        <div class="map-container">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.988!2d78.695!3d10.7905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baaf0f!2sTiruchirappalli%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1698765432100!5m2!1sen!2sin"
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+        <!-- Logo & Tagline -->
+        <div class="flex flex-col items-center mb-8">
+          <a href="#"
+            class="flex items-center logo-container bg-white backdrop-blur-sm px-5 py-2.5 rounded-full shadow-md border border-slate-200 dark:border-slate-700 hover:shadow-lg transition-all">
+            <img src="assets/images/supreme-logo.png" alt="Supreme Energy Solutions" class="logo-img h-10 md:h-12"
+              loading="lazy" />
+          </a>
+          <br></br>
+          <p class="text-lg font-medium text-[var(--text)]">
+            Reviving batteries, reducing waste, powering a greener tomorrow.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 text-sm">
+          <div>
+            <h4 class="font-semibold text-[var(--text)] mb-3">Company</h4>
+            <ul class="space-y-2">
+              <li><a href="#" class="hover:text-[var(--primary)] transition">About Us</a></li>
+              <li><a href="#contact" class="hover:text-[var(--primary)] transition">Contact</a></li>
+              <li><a href="#faqs" class="hover:text-[var(--primary)] transition">FAQs</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-[var(--text)] mb-3">Products</h4>
+            <ul class="space-y-2">
+              <li><a href="#products" class="hover:text-[var(--primary)] transition">BLESS BL12165</a></li>
+              <li><a href="#products" class="hover:text-[var(--primary)] transition">BLESS BL12200</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-[var(--text)] mb-3">Support</h4>
+            <ul class="space-y-2">
+              <li><a href="tel:+919818693338" class="hover:text-[var(--primary)] transition">+91 9818693338</a></li>
+              <li><a href="mailto:krish@supremeenergysolutions.co.in"
+                  class="hover:text-[var(--primary)] transition">Email
+                  Us</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-[var(--text)] mb-3">Follow Us</h4>
+            <div class="flex gap-4 justify-center">
+              <!-- Social Icons – fixed visibility -->
+              <a href="https://www.instagram.com/supremeenergy_solutions/" target="_blank"
+                class="social-btn text-pink-500 hover:text-pink-400 transition hover-subtle">
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.326 3.608 1.301.975.975 1.239 2.242 1.301 3.608.058 1.266.07 1.646.07 4.85 0 3.204-.012 3.584-.07 4.85c-.062 1.366-.326 2.633-1.301 3.608-.975.975-2.242 1.239-3.608 1.301-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.326-3.608-1.301-.975-.975-1.239-2.242-1.301-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.326-2.633 1.301-3.608.975-.975 2.242-1.239 3.608-1.301 1.266-.058 1.646-.07 4.85-.07zm0-2.163C8.735 0 8.332.003 7.052.072c-1.688-.069-3.306.34-4.52 1.554C1.413 2.746.999 4.364.93 6.052.861 7.332.858 7.735.858 12c0 4.265.003 4.668.072 5.948.069 1.688.34 3.306 1.554 4.52 1.154 1.154 2.772 1.568 4.46 1.637 1.28.069 1.683.072 5.948.072 4.265 0 4.668-.003 5.948-.072 1.688-.069 3.306-.34 4.52-1.554 1.154-1.154 1.568-2.772 1.637-4.46.069-1.28.072-1.683.072-5.948 0-4.265-.003-4.668-.072-5.948-.069-1.688-.34-3.306-1.554-4.52C19.306.411 17.688.097 16 0 14.72-.069 14.317-.072 10 .072zM12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z" />
+                </svg>
+              </a>
+              <a href="https://www.youtube.com/@sestrichy" target="_blank"
+                class="social-btn text-red-500 hover:text-red-400 transition hover-subtle">
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M23.498 6.186c-.267-1.003-1.05-1.79-2.05-2.057C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.448.629c-1 .267-1.783 1.054-2.05 2.057C0 8.13 0 12 0 12s0 3.87.502 5.814c.267 1.003 1.05 1.79 2.05 2.057C4.495 20.5 12 20.5 12 20.5s7.505 0 9.448-.629c1-.267 1.783-1.054 2.05-2.057C24 15.87 24 12 24 12s0-3.87-.502-5.814zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
+                </svg>
+              </a>
+              <a href="https://wa.me/919818693338" target="_blank" rel="noopener noreferrer"
+                class="social-btn text-green-500 hover:text-green-400 transition hover-subtle">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                  class="w-14 h-14 md:w-16 md:h-16">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.941 1.164-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004c-1.423-.006-2.816-.391-4.03-.991l-4.395 1.155 1.175-4.29c-.636-1.238-1.029-2.653-1.029-4.164 0-4.814 3.928-8.742 8.742-8.742 4.814 0 8.742 3.928 8.742 8.742 0 4.814-3.928 8.742-8.742 8.742z" />
+                </svg>
+              </a>
+              <a href="https://www.linkedin.com/company/supreme-energy-solutions/" target="_blank"
+                class="social-btn text-blue-500 hover:text-blue-400 transition hover-subtle">
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-1.337-.029-3.058-1.867-3.058-1.867 0-2.152 1.459-2.152 2.967v5.695h-3v-11h2.882v1.509h.039c.401-.757 1.381-1.557 2.837-1.557 3.033 0 3.598 1.997 3.598 4.592v6.456z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Copyright -->
+        <p class="text-sm opacity-80">
+          © 2026 Supreme Energy Solutions. All rights reserved. | Tiruchirappalli, Tamil Nadu, India
+        </p>
+      </div>
+    </footer>
+
+    <!-- Sticky CTA -->
+    <div
+      class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-full font-semibold shadow-2xl z-50 md:hidden order-now">
+      Order Now – Pay with UPI
+    </div>
+
+    <!-- Sticky WhatsApp button – same logo as footer -->
+    <a href="https://wa.me/919818693338?text=Hi%20Supreme%20Energy%20Solutions!%20I%20want%20to%20know%20more%20about%20BLESS..."
+      target="_blank"
+      class="fixed bottom-24 right-6 md:bottom-6 md:right-8 z-50 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 hover:scale-110 transition-all duration-300 hover-subtle flex items-center justify-center"
+      aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 md:w-8 md:h-8">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.941 1.164-.173.198-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.29.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004c-1.423-.006-2.816-.391-4.03-.991l-4.395 1.155 1.175-4.29c-.636-1.238-1.029-2.653-1.029-4.164 0-4.814 3.928-8.742 8.742-8.742 4.814 0 8.742 3.928 8.742 8.742 0 4.814-3.928 8.742-8.742 8.742z" />
+      </svg>
+    </a>
+
+    <!-- UPI Modal – improved responsiveness & theme colors with Best-Practice Validation -->
+    <div id="upi-modal"
+      class="hidden fixed inset-0 bg-black/85 flex items-center justify-center z-[9999] p-4 animate-on-scroll">
+      <div
+        class="bg-slate-900/95 backdrop-blur-xl rounded-2xl p-6 max-w-md w-full max-h-[90vh] overflow-y-auto border border-slate-700/50 shadow-2xl relative">
+        <span
+          class="close-modal text-4xl text-slate-400 hover:text-white cursor-pointer absolute top-3 right-5">×</span>
+        <h2 class="text-3xl font-bold mb-6 rainbow-gradient text-center">Pay with UPI</h2>
+
+        <!-- Step 1: Products -->
+        <div id="step-products">
+          <h3 class="text-xl font-semibold mb-6 text-center text-white">1. Select Products & Quantity</h3>
+          <div class="space-y-6">
+            <div class="p-4 rounded-xl bg-slate-800/50 border border-slate-700">
+              <label class="flex items-center mb-3 text-lg text-white">
+                <input type="checkbox" id="product1" class="mr-4 w-6 h-6 accent-blue-500" />
+                <span>BLESS BL12165 (₹3,500)</span>
+              </label>
+              <div class="flex items-center gap-4 ml-10" id="slider1">
+                <label class="text-base w-20 text-slate-300">Qty:</label>
+                <input type="range" id="qty1" min="1" max="10" value="1" class="w-48 accent-blue-500" disabled />
+                <span id="qty1-value" class="text-base w-12 text-center text-white">1</span>
+              </div>
+            </div>
+            <div class="p-4 rounded-xl bg-slate-800/50 border border-slate-700">
+              <label class="flex items-center mb-3 text-lg text-white">
+                <input type="checkbox" id="product2" class="mr-4 w-6 h-6 accent-blue-500" />
+                <span>BLESS BL12200 (₹4,000)</span>
+              </label>
+              <div class="flex items-center gap-4 ml-10" id="slider2">
+                <label class="text-base w-20 text-slate-300">Qty:</label>
+                <input type="range" id="qty2" min="1" max="10" value="1" class="w-48 accent-blue-500" disabled />
+                <span id="qty2-value" class="text-base w-12 text-center text-white">1</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-8 text-xl font-bold text-center text-white">
+            Subtotal: <span id="subtotal">₹0</span><br>
+            GST (18%): <span id="gst">₹0</span><br>
+            <span class="text-2xl">Total: <span id="total-amount">₹0</span></span>
+          </p>
+
+          <div class="flex gap-6 mt-8 justify-center">
+            <button id="proceed-btn" type="button"
+              class="px-8 py-4 text-lg bg-gradient-to-r from-green-600 to-teal-600 rounded-xl font-bold hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled>
+              Select Product
+            </button>
+            <button id="clear-btn" type="button"
+              class="px-8 py-4 text-lg bg-gradient-to-r from-red-600 to-rose-600 rounded-xl font-bold hover:opacity-90 transition-opacity">
+              Clear
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Billing – with validation -->
+        <div id="step-billing" class="hidden">
+          <h3 class="text-xl font-semibold mb-6 text-center text-white">2. Billing Details</h3>
+          <form id="billing-form" class="space-y-5" novalidate>
+            <div>
+              <input type="text" id="name" name="name" placeholder="Full Name *" required minlength="2"
+                class="w-full p-4 bg-slate-800 border border-slate-600 rounded-xl text-white focus:border-blue-500 focus:outline-none"
+                aria-describedby="name-error" />
+              <p id="name-error" class="text-red-400 text-sm mt-1 hidden">Please enter a valid name (min 2 characters)
+              </p>
+            </div>
+            <div>
+              <input type="email" id="email" name="email" placeholder="Email Address *" required
+                class="w-full p-4 bg-slate-800 border border-slate-600 rounded-xl text-white focus:border-blue-500 focus:outline-none"
+                aria-describedby="email-error" />
+              <p id="email-error" class="text-red-400 text-sm mt-1 hidden">Please enter a valid email address</p>
+            </div>
+            <div>
+              <input type="tel" id="phone" name="phone" placeholder="Mobile Number (10 digits) *" pattern="[0-9]{10}"
+                required
+                class="w-full p-4 bg-slate-800 border border-slate-600 rounded-xl text-white focus:border-blue-500 focus:outline-none"
+                aria-describedby="phone-error" />
+              <p id="phone-error" class="text-red-400 text-sm mt-1 hidden">Please enter a valid 10-digit mobile number
+              </p>
+            </div>
+            <div>
+              <textarea id="address" name="address" placeholder="Shipping Address *" rows="4" required minlength="10"
+                class="w-full p-4 bg-slate-800 border border-slate-600 rounded-xl text-white focus:border-blue-500 focus:outline-none"
+                aria-describedby="address-error"></textarea>
+              <p id="address-error" class="text-red-400 text-sm mt-1 hidden">Please enter a valid shipping address (min
+                10
+                characters)</p>
+            </div>
+            <button id="generate-qr" type="submit"
+              class="w-full py-5 text-xl bg-gradient-to-r from-cyan-600 to-blue-600 rounded-xl font-bold hover:opacity-90 transition">
+              Generate QR & Pay
+            </button>
+          </form>
+        </div>
+
+        <!-- Step 3: QR -->
+        <div id="step-qr" class="hidden flex flex-col items-center">
+          <h3 class="text-xl font-semibold mb-6 text-center text-white">3. Scan & Pay</h3>
+          <div
+            class="logo-container mx-auto mb-6 p-4 bg-white backdrop-blur-sm rounded-full shadow-md border border-slate-200 dark:border-slate-700">
+            <img src="assets/images/supreme-logo.png" alt="Supreme Energy Solutions" class="logo-img w-60"
+              loading="lazy" />
+          </div>
+          <div id="qr-code" class="mb-6 bg-white p-4 rounded-xl"></div>
+          <p class="text-center text-slate-300 text-lg">Scan with any UPI app (Google Pay, PhonePe, etc.)</p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        themeToggle.checked = savedTheme === 'dark';
+
+        themeToggle.addEventListener('change', () => {
+          const next = themeToggle.checked ? 'dark' : 'light';
+          html.setAttribute('data-theme', next);
+          localStorage.setItem('theme', next);
+        });
+
+        // // Onboarding overlay
+        // const onboarding = document.getElementById('onboarding');
+        // const locSelect = document.getElementById('location-select');
+        // const snackbar = document.getElementById('snackbar');
+
+        // if (onboarding && locSelect) {
+        //   onboarding.classList.remove('hidden');
+        //   locSelect.addEventListener('change', e => {
+        //     if (e.target.value === 'ok') onboarding.classList.add('hidden');
+        //     else if (e.target.value === 'soon') {
+        //       snackbar.classList.remove('hidden');
+        //       setTimeout(() => snackbar.classList.add('hidden'), 3000);
+        //       locSelect.value = '';
+        //     }
+        //   });
+        // }
+
+        // Header scroll
+        let lastScroll = 0;
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+          const currentScroll = window.pageYOffset;
+          if (currentScroll > lastScroll && currentScroll > 100) {
+            header.classList.add('hidden');
+          } else {
+            header.classList.remove('hidden');
+          }
+          lastScroll = currentScroll <= 0 ? 0 : currentScroll;
+        });
+
+        // Mobile menu toggle (fixed)
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuClose = document.getElementById('menu-close');
+
+        if (menuToggle && mobileMenu) {
+          menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('translate-x-full');
+            mobileMenu.classList.toggle('translate-x-0');
+          });
+        }
+
+        if (menuClose) {
+          menuClose.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+            mobileMenu.classList.remove('translate-x-0');
+          });
+        }
+
+        // Close on link click (optional but recommended)
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+            mobileMenu.classList.remove('translate-x-0');
+          });
+        });
+
+        // Smooth scroll for all internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', e => {
+            e.preventDefault();
+            const targetId = anchor.getAttribute('href').substring(1);
+            const target = document.getElementById(targetId);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+            }
+          });
+        });
+
+        // Mobile hover vibration feedback (if supported)
+        document.querySelectorAll('.hover-subtle, button, a').forEach(el => {
+          el.addEventListener('touchstart', () => {
+            if ('vibrate' in navigator) navigator.vibrate(10); // Short buzz
+          });
+        });
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) entry.target.classList.add('visible');
+          });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-on-scroll parallax-layer').forEach(el => observer.observe(el));
+
+        // Hero slider
+        const heroBg = document.getElementById('hero-bg');
+        const backgrounds = [
+          'assets/images/hero-bg-1.webp',
+          'assets/images/hero-bg-2.webp',
+          'assets/images/hero-bg-3.webp'
+        ];
+        let currentBg = 0;
+        setInterval(() => {
+          currentBg = (currentBg + 1) % backgrounds.length;
+          heroBg.style.opacity = 0;
+          setTimeout(() => {
+            heroBg.src = backgrounds[currentBg];
+            heroBg.style.opacity = 1;
+          }, 800);
+        }, 12000);
+
+        // UPI Modal with best-practice validation
+        const upiModal = document.getElementById('upi-modal');
+        const closeModalBtn = document.querySelector('.close-modal');
+        const proceedBtn = document.getElementById('proceed-btn');
+        const billingForm = document.getElementById('billing-form');
+
+        document.querySelectorAll('.order-now').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const selectedDistrict = document.getElementById('location-select')?.value;
+            if (!selectedDistrict || selectedDistrict === '' || selectedDistrict === 'soon') {
+              // Only show onboarding when button clicked and no valid district
+              document.getElementById('onboarding').classList.remove('hidden');
+
+              // After selection → auto-open UPI
+              const locSelect = document.getElementById('location-select');
+              const handleSelection = (e) => {
+                if (e.target.value && e.target.value !== 'soon') {
+                  document.getElementById('onboarding').classList.add('hidden');
+                  document.getElementById('upi-modal').classList.remove('hidden');
+                  resetUpiModal(); // your reset function
+                  locSelect.removeEventListener('change', handleSelection);
+                }
+              };
+              locSelect.addEventListener('change', handleSelection);
+            } else {
+              // Valid district already selected → direct UPI
+              document.getElementById('upi-modal').classList.remove('hidden');
+              resetUpiModal();
+            }
+          });
+        });
+
+        closeModalBtn?.addEventListener('click', () => {
+          upiModal.classList.add('hidden');
+          resetUpiModal();
+        });
+
+        function resetUpiModal() {
+          document.getElementById('step-products').classList.remove('hidden');
+          document.getElementById('step-billing').classList.add('hidden');
+          document.getElementById('step-qr').classList.add('hidden');
+          document.getElementById('product1').checked = false;
+          document.getElementById('product2').checked = false;
+          document.getElementById('qty1').value = 1;
+          document.getElementById('qty2').value = 1;
+          document.getElementById('qty1-value').textContent = '1';
+          document.getElementById('qty2-value').textContent = '1';
+          document.getElementById('slider1').classList.remove('enabled');
+          document.getElementById('slider2').classList.remove('enabled');
+          document.getElementById('qty1').disabled = true;
+          document.getElementById('qty2').disabled = true;
+          document.getElementById('billing-form').reset();
+          document.getElementById('qr-code').innerHTML = '';
+          updateTotal();
+          checkProceed();
+          // Reset error messages
+          document.querySelectorAll('[id$="-error"]').forEach(el => el.classList.add('hidden'));
+        }
+
+        const product1 = document.getElementById('product1');
+        const product2 = document.getElementById('product2');
+
+        product1.addEventListener('change', () => {
+          document.getElementById('slider1').classList.toggle('enabled', product1.checked);
+          document.getElementById('qty1').disabled = !product1.checked;
+          updateTotal();
+          checkProceed();
+        });
+
+        product2.addEventListener('change', () => {
+          document.getElementById('slider2').classList.toggle('enabled', product2.checked);
+          document.getElementById('qty2').disabled = !product2.checked;
+          updateTotal();
+          checkProceed();
+        });
+
+        document.getElementById('qty1').addEventListener('input', () => {
+          document.getElementById('qty1-value').textContent = document.getElementById('qty1').value;
+          updateTotal();
+        });
+
+        document.getElementById('qty2').addEventListener('input', () => {
+          document.getElementById('qty2-value').textContent = document.getElementById('qty2').value;
+          updateTotal();
+        });
+
+        function updateTotal() {
+          let subtotal = 0;
+          if (product1.checked) subtotal += 3500 * parseInt(document.getElementById('qty1').value || 1);
+          if (product2.checked) subtotal += 4000 * parseInt(document.getElementById('qty2').value || 1);
+          const gst = subtotal * 0.18;
+          const total = subtotal + gst;
+
+          document.getElementById('subtotal').textContent = `₹${subtotal.toFixed(0)}`;
+          document.getElementById('gst').textContent = `₹${gst.toFixed(0)}`;
+          document.getElementById('total-amount').textContent = `₹${total.toFixed(0)}`;
+        }
+
+        function checkProceed() {
+          const hasSelection = product1.checked || product2.checked;
+          proceedBtn.disabled = !hasSelection;
+          proceedBtn.textContent = hasSelection ? 'Proceed to Billing' : 'Select Product';
+        }
+
+        checkProceed(); // Initial check
+
+        document.getElementById('proceed-btn')?.addEventListener('click', () => {
+          if (!proceedBtn.disabled) {
+            document.getElementById('step-products').classList.add('hidden');
+            document.getElementById('step-billing').classList.remove('hidden');
+          }
+        });
+
+        document.getElementById('clear-btn')?.addEventListener('click', resetUpiModal);
+
+        // Billing form validation + QR generation
+        billingForm?.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          let isValid = true;
+          document.querySelectorAll('#billing-form input, #billing-form textarea').forEach(field => {
+            const errorEl = document.getElementById(`${field.id}-error`);
+            if (!field.validity.valid) {
+              isValid = false;
+              errorEl.classList.remove('hidden');
+              field.classList.add('border-red-500');
+              field.focus();
+            } else {
+              errorEl.classList.add('hidden');
+              field.classList.remove('border-red-500');
+            }
+          });
+
+          if (!isValid) return;
+
+          // All valid → generate QR
+          document.getElementById('step-billing').classList.add('hidden');
+          document.getElementById('step-qr').classList.remove('hidden');
+
+          // Get billing fields
+          const name = document.getElementById('name').value.trim();
+          const email = document.getElementById('email').value.trim();
+          const phone = document.getElementById('phone').value.trim();
+          const address = document.getElementById('address').value.trim();
+          const district = document.getElementById('location-select')?.value || 'Unknown';
+
+          // Basic validation (you can make it stricter if needed)
+          if (!name || !phone.match(/^\d{10}$/) || !address) {
+            alert("Please fill Name, 10-digit Phone, and Address correctly.");
+            return;
+          }
+
+          // Hide billing, show QR step
+          document.getElementById('step-billing').classList.add('hidden');
+          document.getElementById('step-qr').classList.remove('hidden');
+
+          // Calculate total (your existing function)
+          const total = document.getElementById('total-amount').textContent.replace('₹', '').trim();
+
+          // Build product summary
+          let products = [];
+          if (document.getElementById('product1').checked) {
+            const qty = document.getElementById('qty1').value;
+            products.push(`BLESS BL12165 x${qty}`);
+          }
+          if (document.getElementById('product2').checked) {
+            const qty = document.getElementById('qty2').value;
+            products.push(`BLESS BL12200 x${qty}`);
+          }
+          const productSummary = products.length ? products.join(' + ') : 'No products selected';
+
+          // Build note (tn=) – concise but informative
+          // Clean note – no %20, readable spaces
+          const note = `${productSummary} | ${district} | ${name} | ${phone} | ${address}`
+            .replace(/%20/g, ' ')          // removes any %20
+            .replace(/\+/g, ' ')           // removes + from encoding
+            .trim();
+
+          // Generate QR with detailed tn=
+          new QRCode(document.getElementById('qr-code'), {
+            text: `upi://pay?pa=EzE0379172@CUB&pn=SUPREME ENERGY SOLUTIONS&am=${total}&cu=INR&tn=${note}`,
+            width: 240,
+            height: 240,
+            colorDark: "#000000",
+            colorLight: "#ffffff"
+          });
+        });
+
+        // Real-time validation on input
+        document.querySelectorAll('#billing-form input, #billing-form textarea').forEach(field => {
+          field.addEventListener('input', () => {
+            const errorEl = document.getElementById(`${field.id}-error`);
+            if (field.validity.valid) {
+              errorEl.classList.add('hidden');
+              field.classList.remove('border-red-500');
+            }
+          });
+        });
+
+        // Calculator
+        document.getElementById('calc-btn')?.addEventListener('click', () => {
+          const age = parseFloat(document.getElementById('age').value) || 0;
+          const hours = parseFloat(document.getElementById('hours').value) || 0;
+          const ah = parseFloat(document.getElementById('ah').value) || 0;
+          const temp = parseFloat(document.getElementById('temp').value) || 25;
+          const dod = parseFloat(document.getElementById('dod').value) || 50;
+
+          if (age < 0 || hours <= 0 || ah <= 0 || dod <= 0 || dod > 100) {
+            document.getElementById('calc-result').innerHTML = '<span class="text-red-400">Please enter valid values.</span>';
+            document.getElementById('progress').classList.add('hidden');
+            return;
+          }
+
+          let tempFactor = 1;
+          if (temp > 25) tempFactor = Math.pow(0.5, (temp - 25) / 10);
+          else if (temp < 20) tempFactor = 1 - 0.01 * (20 - temp);
+
+          const dodFactor = 1 - (dod / 100) * 0.4;
+          const ageFactor = 1 - (age / 48) * 0.3;
+
+          const baseLifeMonths = 24 * tempFactor * dodFactor * ageFactor;
+          const remainingLife = baseLifeMonths;
+          const blessBoost = 2.5;
+          const boostedLife = remainingLife * blessBoost;
+          const extraMonths = Math.round(boostedLife - remainingLife);
+
+          document.getElementById('calc-result').innerHTML = `
+            <span class="text-cyan-400">
+              Without BLESS: ~${Math.round(remainingLife)} months remaining<br>
+              With BLESS: ~${Math.round(boostedLife)} months total<br>
+              Extra life gained: <strong>${extraMonths}</strong> months
+            </span>
+          `;
+
+          const progress = document.getElementById('progress');
+          const fill = document.querySelector('.progress-fill');
+          progress.classList.remove('hidden');
+          fill.style.width = '0%';
+          setTimeout(() => fill.style.width = `${(boostedLife / remainingLife) * 100}%`, 100);
+        });
+
+        // Testimonials Carousel
+        const carouselInner = document.getElementById('carousel-inner');
+        if (carouselInner) {
+          let index = 0;
+          const total = carouselInner.children.length;
+          setInterval(() => {
+            index = (index + 1) % total;
+            carouselInner.style.transform = `translateX(-${index * 100}%)`;
+          }, 5000);
+        }
+
+        // FAQs Accordion
+        document.querySelectorAll('.accordion-header').forEach(header => {
+          header.addEventListener('click', () => {
+            const item = header.parentElement;
+            const isOpen = item.classList.contains('open');
+            const content = item.querySelector('.accordion-content');
+
+            // Close all others
+            document.querySelectorAll('.accordion-item').forEach(it => {
+              it.classList.remove('open');
+              const c = it.querySelector('.accordion-content');
+              if (c) c.style.maxHeight = '0px';
+            });
+
+            // Toggle this one
+            if (!isOpen) {
+              item.classList.add('open');
+              if (content) content.style.maxHeight = content.scrollHeight + 'px';
+            }
+          });
+        });
+      });
+
+      // Parallax scrolling
+      window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+        const parallaxLayers = document.querySelectorAll('.parallax-layer');
+        parallaxLayers.forEach(layer => {
+          layer.style.transform = `translateY(${scrollY * 0.15}px)`; // Adjust 0.15 for speed
+        });
+      });
+    </script>
+  </main>
+</body>
+
+</html>
