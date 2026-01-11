@@ -20,41 +20,30 @@
       --primary: #3b82f6;
       --secondary: #06b6d4;
       --accent: #a78bfa;
-      --text: #1e293b;
-      /* Deep slate for light mode - highly visible */
-      --text-muted: #475569;
-      /* Darker gray for muted text */
+      --text: #0f172a;
+      /* Much darker for perfect visibility over hero */
+      --text-muted: #1e293b;
+      /* Even darker muted text */
       --bg: #f8fafc;
-      /* Light bg */
-      --card: rgba(255, 255, 255, 0.85);
-      /* Glassy white card */
-      --card-border: rgba(59, 130, 246, 0.15);
-      --glass-bg: rgba(255, 255, 255, 0.75);
-      /* Glassy translucent */
-      --glass-border: rgba(255, 255, 255, 0.25);
-      --shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-      /* Soft neumorphic shadow */
-      --header-bg: rgba(248, 250, 252, 0.95);
-      /* Glassy header */
+      --card: rgba(255, 255, 255, 0.94);
+      /* Stronger opacity for cards */
+      --card-border: rgba(59, 130, 246, 0.2);
+      --glass-bg: rgba(255, 255, 255, 0.86);
+      --glass-border: rgba(59, 130, 246, 0.28);
+      --shadow: 0 10px 40px rgba(0, 0, 0, 0.09);
+      --header-bg: rgba(248, 250, 252, 0.97);
     }
 
     [data-theme="dark"] {
       --text: #f1f5f9;
-      /* Soft white - highly visible */
-      --text-muted: #cbd5e1;
-      /* Light gray for muted text */
+      --text-muted: #e2e8f0;
       --bg: #0f172a;
-      /* Dark bg */
-      --card: rgba(30, 41, 59, 0.85);
-      /* Glassy slate card */
-      --card-border: rgba(59, 130, 246, 0.2);
-      --glass-bg: rgba(15, 23, 42, 0.75);
-      /* Glassy dark */
-      --glass-border: rgba(59, 130, 246, 0.25);
-      --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-      /* Deeper neumorphic shadow */
-      --header-bg: rgba(15, 23, 42, 0.95);
-      /* Glassy dark header */
+      --card: rgba(30, 41, 59, 0.9);
+      --card-border: rgba(59, 130, 246, 0.3);
+      --glass-bg: rgba(15, 23, 42, 0.82);
+      --glass-border: rgba(59, 130, 246, 0.35);
+      --shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      --header-bg: rgba(15, 23, 42, 0.94);
     }
 
     body {
@@ -64,6 +53,31 @@
       margin: 0;
       scroll-behavior: smooth;
       transition: background 0.4s ease, color 0.4s ease;
+    }
+
+    /* Hero text forced visibility in light mode */
+    [data-theme="light"] .hero-content p,
+    [data-theme="light"] .hero-content span:not(.rainbow-gradient) {
+      color: #0f172a !important;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+      /* Extra readability over slider */
+    }
+
+    /* Application Areas - Elementor style scroll reveal + hover */
+    .app-area-card {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .app-area-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .app-area-card:hover {
+      transform: translateY(-16px) scale(1.05);
+      box-shadow: 0 25px 60px rgba(59, 130, 246, 0.35);
     }
 
     /* Glassmorphism + Neumorphism base */
@@ -450,6 +464,25 @@
       transform: translateY(-4px) scale(1.02);
       box-shadow: var(--shadow), 0 0 30px rgba(59, 130, 246, 0.25);
     }
+
+    /* Completely disable hover/tooltip on QR code */
+    #qr-code,
+    #qr-code * {
+      cursor: default !important;
+      pointer-events: none !important;
+      /* No mouse interaction */
+      user-select: none !important;
+      /* No selection */
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+    }
+
+    /* Remove any possible title/tooltip */
+    #qr-code[title],
+    #qr-code *[title] {
+      title: "" !important;
+    }
   </style>
 </head>
 
@@ -472,7 +505,7 @@
         </a>
 
         <!-- Navigation – smaller, centered alignment -->
-        <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-base font-medium">
+        <nav class="hidden md:flex items-center gap-13 lg:gap-8 text-base font-medium">
           <a href="#"
             class="nav-link text-[var(--text)] hover:text-[var(--primary)] transition px-3 py-2 rounded-lg hover:bg-[var(--glass-bg)]/50">Home</a>
           <a href="#products"
@@ -480,6 +513,9 @@
           <a href="#how-it-works"
             class="nav-link text-[var(--text)] hover:text-[var(--primary)] transition px-3 py-2 rounded-lg hover:bg-[var(--glass-bg)]/50">How
             It Works</a>
+          <a href="#application-areas"
+            class="nav-link text-[var(--text)] hover:text-[var(--primary)] transition px-3 py-2 rounded-lg hover:bg-[var(--glass-bg)]/50">Application
+            Areas</a>
           <a href="#faqs"
             class="nav-link text-[var(--text)] hover:text-[var(--primary)] transition px-3 py-2 rounded-lg hover:bg-[var(--glass-bg)]/50">FAQs</a>
           <a href="#about"
@@ -513,6 +549,8 @@
       <a href="#products" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">Products</a>
       <a href="#how-it-works" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">How It
         Works</a>
+      <a href="#application-areas"
+        class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">Application Areas</a>
       <a href="#faqs" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">FAQs</a>
       <a href="#about" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">About</a>
       <a href="#contact" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">Contact</a>
@@ -572,27 +610,27 @@
       </div>
     </div>
 
-    <!-- Hero -->
-    <section id="hero"
-      class="hero relative min-h-[80vh] md:min-h-screen flex items-center animate-on-scroll parallax-layer">
-      <div class="absolute inset-0">
-        <div class="absolute inset-0 bg-black/35 z-10"></div>
+    <!-- Hero Section (updated text color visibility) -->
+    <section id="hero" class="hero relative min-h-[80vh] md:min-h-screen flex items-center animate-on-scroll">
+      <div class="absolute inset-0 parallax-layer" id="hero-bg-container">
         <img id="hero-bg" src="assets/images/hero-bg-1.webp" alt="Background"
-          class="w-full h-full object-cover transition-opacity duration-1500" loading="lazy" />
+          class="w-full h-full object-cover transition-transform duration-300" loading="lazy" />
       </div>
+      <div class="absolute inset-0 parallax-layer opacity-40 pointer-events-none"
+        style="background: radial-gradient(circle at 30% 70%, rgba(59,130,246,0.2), transparent 70%);"></div>
       <div class="hero-content relative z-20 max-w-5xl mx-auto px-6 text-center">
         <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-6 leading-tight rainbow-gradient">
           Revive your batteries.<br>
           <span class="animate-float">Extend life sustainably.</span>
         </h1>
-        <p class="text-xl md:text-2xl text-[var(--text-muted)] max-w-3xl mx-auto mb-10">
+        <p class="text-xl md:text-2xl text-[var(--text)] max-w-3xl mx-auto mb-10 font-medium">
           BLESS – external desulfation technology that restores capacity, cuts replacement costs, and supports a greener
           future.
         </p>
         <div class="flex flex-col sm:flex-row gap-6 justify-center">
-          <button class="cta px-10 py-5 text-xl order-now">Order Now</button>
+          <button class="cta px-10 py-5 text-xl order-now hover-subtle">Order Now</button>
           <button
-            class="px-10 py-5 bg-slate-800/80 border border-slate-600 rounded-xl text-xl font-semibold hover:bg-slate-700 transition"
+            class="px-10 py-5 bg-[var(--glass-bg)] border border-[var(--glass-border)] rounded-xl text-xl font-semibold hover:bg-[var(--glass-bg)]/80 transition hover-subtle"
             onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})">Learn More</button>
         </div>
       </div>
@@ -621,6 +659,48 @@
         </div>
         <div class="mt-12 text-center">
           <button class="cta px-10 py-5 text-xl order-now">Order Now</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Application Areas – Elementor-like design -->
+    <section id="application-areas"
+      class="py-16 px-6 bg-slate-900/30 border-y border-slate-800/50 animate-on-scroll parallax-layer">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 rainbow-gradient">Application Areas</h2>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Agriculture -->
+          <div class="app-area-card glass p-8 rounded-2xl text-center">
+            <img src="assets/images/app-agriculture.webp" alt="Agriculture - solar powered pumps and inverters"
+              class="w-20 h-20 mx-auto mb-6 rounded-full object-cover shadow-lg">
+            <h3 class="text-2xl font-bold mb-4 text-[var(--text)]">Agriculture</h3>
+            <p class="text-[var(--text-muted)]">Solar inverters, tractor batteries, pump systems, cold storage</p>
+          </div>
+
+          <!-- Home & Inverters -->
+          <div class="app-area-card glass p-8 rounded-2xl text-center">
+            <img src="assets/images/app-home.webp" alt="Home inverters and UPS systems"
+              class="w-20 h-20 mx-auto mb-6 rounded-full object-cover shadow-lg">
+            <h3 class="text-2xl font-bold mb-4 text-[var(--text)]">Home & Inverters</h3>
+            <p class="text-[var(--text-muted)]">UPS, home inverters, solar backup, power cuts solution</p>
+          </div>
+
+          <!-- E-Rickshaws & EVs -->
+          <div class="app-area-card glass p-8 rounded-2xl text-center">
+            <img src="assets/images/app-e-rickshaw.webp" alt="E-Rickshaws and low-speed EVs"
+              class="w-20 h-20 mx-auto mb-6 rounded-full object-cover shadow-lg">
+            <h3 class="text-2xl font-bold mb-4 text-[var(--text)]">E-Rickshaws & EVs</h3>
+            <p class="text-[var(--text-muted)]">Electric rickshaws, golf carts, low-speed electric vehicles</p>
+          </div>
+
+          <!-- Commercial & Industrial -->
+          <div class="app-area-card glass p-8 rounded-2xl text-center">
+            <img src="assets/images/app-industrial.webp" alt="Commercial and industrial battery applications"
+              class="w-20 h-20 mx-auto mb-6 rounded-full object-cover shadow-lg">
+            <h3 class="text-2xl font-bold mb-4 text-[var(--text)]">Commercial & Industrial</h3>
+            <p class="text-[var(--text-muted)]">Telecom towers, forklifts, heavy-duty UPS, backup power</p>
+          </div>
         </div>
       </div>
     </section>
@@ -659,7 +739,7 @@
                   use</td>
               </tr>
               <tr class="bg-[var(--card)]/50 hover:bg-[var(--card)]/80 transition-colors">
-                <td class="p-4 border-b border-[var(--card-border)]">Price (incl. GST)</td>
+                <td class="p-4 border-b border-[var(--card-border)]">Basic Price (Courier Charges extra)</td>
                 <td class="p-4 border-b border-[var(--card-border)] text-center text-blue-400">₹3,500</td>
                 <td class="p-4 border-b border-[var(--card-border)] text-center text-cyan-400">₹4,000</td>
               </tr>
@@ -1019,6 +1099,7 @@
             <ul class="space-y-2">
               <li><a href="#" class="hover:text-[var(--primary)] transition">About Us</a></li>
               <li><a href="#contact" class="hover:text-[var(--primary)] transition">Contact</a></li>
+              <li><a href="#application-areas" class="hover:text-[var(--primary)] transition">Application</a></li>
               <li><a href="#faqs" class="hover:text-[var(--primary)] transition">FAQs</a></li>
             </ul>
           </div>
@@ -1138,6 +1219,7 @@
 
           <p class="mt-8 text-xl font-bold text-center text-white">
             Subtotal: <span id="subtotal">₹0</span><br>
+            Courier charges: <span id="couriercharges">₹0</span><br>
             GST (18%): <span id="gst">₹0</span><br>
             <span class="text-2xl">Total: <span id="total-amount">₹0</span></span>
           </p>
@@ -1155,41 +1237,72 @@
           </div>
         </div>
 
-        <!-- Step 2: Billing – with validation -->
+        <!-- Step 2: Billing – with split shipping address & validation -->
         <div id="step-billing" class="hidden">
           <h3 class="text-xl font-semibold mb-6 text-center text-white">2. Billing Details</h3>
-          <form id="billing-form" class="space-y-5" novalidate>
+          <form id="billing-form" class="space-y-6" novalidate>
             <div>
-              <input type="text" id="name" name="name" placeholder="Full Name *" required minlength="2"
-                class="w-full p-4 bg-slate-800 border border-slate-600 rounded-xl text-white focus:border-blue-500 focus:outline-none"
-                aria-describedby="name-error" />
-              <p id="name-error" class="text-red-400 text-sm mt-1 hidden">Please enter a valid name (min 2 characters)
-              </p>
+              <label for="name" class="block text-slate-300 mb-2">Full Name *</label>
+              <input type="text" id="name" required minlength="3" pattern="[A-Za-z\s'-]{3,}"
+                class="w-full p-5 text-lg bg-slate-800 border border-slate-600 rounded-xl text-white focus:border-blue-500 focus:outline-none invalid:border-red-500"
+                placeholder="Enter your full name" aria-describedby="name-error" />
+              <p id="name-error" class="text-red-400 text-sm mt-1 hidden">Name must be at least 3 characters</p>
             </div>
+
             <div>
-              <input type="email" id="email" name="email" placeholder="Email Address *" required
-                class="w-full p-4 bg-slate-800 border border-slate-600 rounded-xl text-white focus:border-blue-500 focus:outline-none"
-                aria-describedby="email-error" />
+              <label for="email" class="block text-slate-300 mb-2">Email Address *</label>
+              <input type="email" id="email" required
+                class="w-full p-5 text-lg bg-slate-800 border border-slate-600 rounded-xl text-white focus:border-blue-500 focus:outline-none invalid:border-red-500"
+                placeholder="your.email@example.com" aria-describedby="email-error" />
               <p id="email-error" class="text-red-400 text-sm mt-1 hidden">Please enter a valid email address</p>
             </div>
+
             <div>
-              <input type="tel" id="phone" name="phone" placeholder="Mobile Number (10 digits) *" pattern="[0-9]{10}"
-                required
-                class="w-full p-4 bg-slate-800 border border-slate-600 rounded-xl text-white focus:border-blue-500 focus:outline-none"
-                aria-describedby="phone-error" />
-              <p id="phone-error" class="text-red-400 text-sm mt-1 hidden">Please enter a valid 10-digit mobile number
+              <label for="phone" class="block text-slate-300 mb-2">Mobile Number (10 digits) *</label>
+              <input type="tel" id="phone" required pattern="[0-9]{10}" maxlength="10"
+                class="w-full p-5 text-lg bg-slate-800 border border-slate-600 rounded-xl text-white focus:border-blue-500 focus:outline-none invalid:border-red-500"
+                placeholder="9818693338" aria-describedby="phone-error" />
+              <p id="phone-error" class="text-red-400 text-sm mt-1 hidden">Enter exactly 10 digits (no spaces or +91)
               </p>
             </div>
-            <div>
-              <textarea id="address" name="address" placeholder="Shipping Address *" rows="4" required minlength="10"
-                class="w-full p-4 bg-slate-800 border border-slate-600 rounded-xl text-white focus:border-blue-500 focus:outline-none"
-                aria-describedby="address-error"></textarea>
-              <p id="address-error" class="text-red-400 text-sm mt-1 hidden">Please enter a valid shipping address (min
-                10
-                characters)</p>
+
+            <!-- Shipping Address – Split Fields -->
+            <div class="space-y-4">
+              <div>
+                <label for="full-address" class="block text-slate-300 mb-2">Full Shipping Address *</label>
+                <textarea id="full-address" rows="3" placeholder="Door No., Building, Street, Area, City, Landmark..."
+                  class="w-full p-4 bg-slate-800 border border-slate-600 rounded-xl text-white focus:border-blue-500 focus:outline-none invalid:border-red-500"
+                  required minlength="20" aria-describedby="address-error"></textarea>
+                <p id="address-error" class="text-red-400 text-sm mt-1 hidden">Address must be at least 20 characters
+                  for delivery</p>
+              </div>
+
+              <div class="grid grid-cols-2 gap-4">
+                <div>
+                  <label for="district-display" class="block text-slate-300 mb-2">District</label>
+                  <input type="text" id="district-display"
+                    class="w-full p-4 bg-slate-700 border border-slate-600 rounded-xl text-white cursor-not-allowed"
+                    readonly aria-readonly="true">
+                </div>
+
+                <div>
+                  <label class="block text-slate-300 mb-2">Pincode *</label>
+                  <div class="flex">
+                    <input type="text" id="pin-prefix"
+                      class="w-1/3 p-4 bg-slate-700 border border-slate-600 rounded-l-xl text-white cursor-not-allowed"
+                      readonly maxlength="3" aria-readonly="true">
+                    <input type="text" id="pin-suffix" placeholder="XXX" pattern="\d{3}" maxlength="3" required
+                      class="w-2/3 p-4 bg-slate-800 border border-slate-600 rounded-r-xl text-white focus:border-blue-500 focus:outline-none invalid:border-red-500"
+                      aria-describedby="pin-error" />
+                  </div>
+                  <p id="pin-error" class="text-red-400 text-sm mt-1 hidden">Enter exactly 3 digits</p>
+                </div>
+              </div>
             </div>
+
             <button id="generate-qr" type="submit"
-              class="w-full py-5 text-xl bg-gradient-to-r from-cyan-600 to-blue-600 rounded-xl font-bold hover:opacity-90 transition">
+              class="w-full py-6 text-xl bg-gradient-to-r from-cyan-600 to-blue-600 rounded-xl font-bold hover:opacity-90 hover-subtle disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled>
               Generate QR & Pay
             </button>
           </form>
@@ -1315,7 +1428,9 @@
         const backgrounds = [
           'assets/images/hero-bg-1.webp',
           'assets/images/hero-bg-2.webp',
-          'assets/images/hero-bg-3.webp'
+          // 'assets/images/hero-bg-3.webp',
+          'assets/images/hero-bg-4.webp',
+          'assets/images/hero-bg-5.webp'
         ];
         let currentBg = 0;
         setInterval(() => {
@@ -1417,10 +1532,14 @@
           let subtotal = 0;
           if (product1.checked) subtotal += 3500 * parseInt(document.getElementById('qty1').value || 1);
           if (product2.checked) subtotal += 4000 * parseInt(document.getElementById('qty2').value || 1);
+          let courier_charges = 0;
+          if (product1.checked) courier_charges += 35 * parseInt(document.getElementById('qty1').value || 1);
+          if (product2.checked) courier_charges += 35 * parseInt(document.getElementById('qty2').value || 1);
           const gst = subtotal * 0.18;
-          const total = subtotal + gst;
+          const total = subtotal + courier_charges + gst;
 
           document.getElementById('subtotal').textContent = `₹${subtotal.toFixed(0)}`;
+          document.getElementById('couriercharges').textContent = `₹${courier_charges.toFixed(0)}`;
           document.getElementById('gst').textContent = `₹${gst.toFixed(0)}`;
           document.getElementById('total-amount').textContent = `₹${total.toFixed(0)}`;
         }
@@ -1433,31 +1552,101 @@
 
         checkProceed(); // Initial check
 
+        // Auto-fill district & pin prefix when proceeding to billing
         document.getElementById('proceed-btn')?.addEventListener('click', () => {
           if (!proceedBtn.disabled) {
+            const district = document.getElementById('location-select')?.value || 'Unknown';
+            document.getElementById('district-display').value = district;
+
+            const pinPrefixes = {
+              'Ariyalur': '621',
+              'Chengalpattu': '603',
+              'Chennai': '600',
+              'Coimbatore': '641',
+              'Cuddalore': '607',
+              'Dharmapuri': '636',
+              'Dindigul': '624',
+              'Erode': '638',
+              'Kallakurichi': '606',
+              'Kanchipuram': '631',
+              'Kanyakumari': '629',
+              'Karur': '639',
+              'Krishnagiri': '635',
+              'Madurai': '625',
+              'Mayiladuthurai': '609',
+              'Nagapattinam': '611',
+              'Namakkal': '637',
+              'Nilgiris': '643',
+              'Perambalur': '621',
+              'Pudukkottai': '622',
+              'Ramanathapuram': '623',
+              'Ranipet': '632',
+              'Salem': '636',
+              'Sivaganga': '630',
+              'Tenkasi': '627',
+              'Thanjavur': '613',
+              'Theni': '625',
+              'Thoothukudi': '628',
+              'Tiruchirappalli': '620',
+              'Tirunelveli': '627',
+              'Tirupathur': '635',
+              'Tiruppur': '641',
+              'Tiruvallur': '602',
+              'Tiruvannamalai': '606',
+              'Tiruvarur': '610',
+              'Vellore': '632',
+              'Viluppuram': '605',
+              'Virudhunagar': '626',
+              'Unknown': '000'
+            };
+            document.getElementById('pin-prefix').value = pinPrefixes[district] || '000';
+
             document.getElementById('step-products').classList.add('hidden');
             document.getElementById('step-billing').classList.remove('hidden');
           }
         });
 
-        document.getElementById('clear-btn')?.addEventListener('click', resetUpiModal);
+        // Real-time validation on input
+        document.querySelectorAll('#billing-form input, #billing-form textarea').forEach(field => {
+          field.addEventListener('input', () => {
+            validateField(field);
+            checkFormValidity();
+          });
+          field.addEventListener('blur', () => validateField(field));
+        });
 
-        // Billing form validation + QR generation
+        function validateField(field) {
+          const errorEl = document.getElementById(`${field.id}-error`);
+          let isValid = field.validity.valid;
+
+          if (field.id === 'full-address' && field.value.trim().length < 20) isValid = false;
+          if (field.id === 'pin-suffix' && !field.value.match(/^\d{3}$/)) isValid = false;
+
+          if (isValid) {
+            errorEl?.classList.add('hidden');
+            field.classList.remove('border-red-500');
+            field.classList.add('border-green-500');
+          } else {
+            errorEl?.classList.remove('hidden');
+            field.classList.add('border-red-500');
+            field.classList.remove('border-green-500');
+          }
+
+          return isValid;
+        }
+
+        function checkFormValidity() {
+          const allValid = Array.from(document.querySelectorAll('#billing-form input, #billing-form textarea')).every(field => validateField(field));
+          document.getElementById('generate-qr').disabled = !allValid;
+        }
+
+        // Form submit + QR generation
         billingForm?.addEventListener('submit', (e) => {
           e.preventDefault();
 
           let isValid = true;
           document.querySelectorAll('#billing-form input, #billing-form textarea').forEach(field => {
-            const errorEl = document.getElementById(`${field.id}-error`);
-            if (!field.validity.valid) {
-              isValid = false;
-              errorEl.classList.remove('hidden');
-              field.classList.add('border-red-500');
-              field.focus();
-            } else {
-              errorEl.classList.add('hidden');
-              field.classList.remove('border-red-500');
-            }
+            if (!validateField(field)) isValid = false;
           });
 
           if (!isValid) return;
@@ -1466,65 +1655,99 @@
           document.getElementById('step-billing').classList.add('hidden');
           document.getElementById('step-qr').classList.remove('hidden');
 
-          // Get billing fields
           const name = document.getElementById('name').value.trim();
           const email = document.getElementById('email').value.trim();
           const phone = document.getElementById('phone').value.trim();
-          const address = document.getElementById('address').value.trim();
-          const district = document.getElementById('location-select')?.value || 'Unknown';
+          const fullAddress = document.getElementById('full-address').value.trim();
+          const district = document.getElementById('district-display').value || 'Unknown';
+          const pinPrefix = document.getElementById('pin-prefix').value;
+          const pinSuffix = document.getElementById('pin-suffix').value.trim();
+          const fullPin = pinPrefix + pinSuffix;
 
-          // Basic validation (you can make it stricter if needed)
-          if (!name || !phone.match(/^\d{10}$/) || !address) {
-            alert("Please fill Name, 10-digit Phone, and Address correctly.");
-            return;
-          }
-
-          // Hide billing, show QR step
-          document.getElementById('step-billing').classList.add('hidden');
-          document.getElementById('step-qr').classList.remove('hidden');
-
-          // Calculate total (your existing function)
           const total = document.getElementById('total-amount').textContent.replace('₹', '').trim();
 
-          // Build product summary
           let products = [];
-          if (document.getElementById('product1').checked) {
-            const qty = document.getElementById('qty1').value;
-            products.push(`BLESS BL12165 x${qty}`);
-          }
-          if (document.getElementById('product2').checked) {
-            const qty = document.getElementById('qty2').value;
-            products.push(`BLESS BL12200 x${qty}`);
-          }
-          const productSummary = products.length ? products.join(' + ') : 'No products selected';
+          if (document.getElementById('product1').checked) products.push(`BLESS BL12165 x${document.getElementById('qty1').value}`);
+          if (document.getElementById('product2').checked) products.push(`BLESS BL12200 x${document.getElementById('qty2').value}`);
+          const productStr = products.length ? products.join(' + ') : 'Products';
 
-          // Build note (tn=) – concise but informative
-          // Clean note – no %20, readable spaces
-          const note = `${productSummary} | ${district} | ${name} | ${phone} | ${address}`
-            .replace(/%20/g, ' ')          // removes any %20
-            .replace(/\+/g, ' ')           // removes + from encoding
+          // Step 1: Build raw note (for tn=)
+          const rawNote = `${productStr} | Dist: ${district} | PIN: ${fullPin} | ${name} | Ph: ${phone} | Addr: ${fullAddress} | Total: ₹${total}`;
+
+          // Step 2: Super clean for tn= – remove EVERYTHING except basic chars
+          const cleanNote = rawNote
+            .replace(/[^a-zA-Z0-9\s:|\-,.\(\)]/g, '')   // Keep only letters, numbers, spaces, : | - , . ( )
+            .replace(/\s+/g, ' ')                       // Collapse multiple spaces
+            .replace(/\s*([|:,-])\s*/g, '$1 ')          // Normalize separators
             .trim();
 
-          // Generate QR with detailed tn=
+          // Step 3: Generate QR with clean tn=
           new QRCode(document.getElementById('qr-code'), {
-            text: `upi://pay?pa=EzE0379172@CUB&pn=SUPREME ENERGY SOLUTIONS&am=${total}&cu=INR&tn=${note}`,
+            text: `upi://pay?pa=EzE0379172@CUB&pn=SUPREME ENERGY SOLUTIONS&am=${total}&cu=INR&tn=${encodeURIComponent(cleanNote)}`,
             width: 240,
             height: 240,
             colorDark: "#000000",
             colorLight: "#ffffff"
           });
-        });
 
-        // Real-time validation on input
-        document.querySelectorAll('#billing-form input, #billing-form textarea').forEach(field => {
-          field.addEventListener('input', () => {
-            const errorEl = document.getElementById(`${field.id}-error`);
-            if (field.validity.valid) {
-              errorEl.classList.add('hidden');
-              field.classList.remove('border-red-500');
+          // Step 4: WhatsApp button – pre-filled with clean message (newlines OK here)
+          const whatsappMsg = encodeURIComponent(
+            `Payment Completed!\n` +
+            `Order: ${productStr}\n` +
+            `District: ${district}\n` +
+            `PIN: ${fullPin}\n` +
+            `Name: ${name}\n` +
+            `Phone: ${phone}\n` +
+            `Address: ${fullAddress}\n` +
+            `Total: ₹${total}\n\n` +
+            `Please attach payment screenshot below 👇`
+          );
+
+          const whatsappLink = `https://wa.me/9199818693338?text=${whatsappMsg}`;
+
+          // After QR generation...
+
+          // Confirmation checkbox to make WhatsApp mandatory after payment
+          const confirmCheckbox = document.createElement('div');
+          confirmCheckbox.innerHTML = `
+  <label class="flex items-center justify-center mt-6 text-slate-300 cursor-pointer">
+    <input type="checkbox" id="payment-confirm" class="mr-3 w-6 h-6 accent-green-500">
+    I have completed the UPI payment
+  </label>
+`;
+
+          document.getElementById('step-qr').appendChild(confirmCheckbox);
+
+          // WhatsApp button – initially disabled
+          const whatsappBtn = document.createElement('a');
+          whatsappBtn.href = whatsappLink;
+          whatsappBtn.target = '_blank';
+          whatsappBtn.rel = 'noopener noreferrer';
+          whatsappBtn.className = 'mt-4 inline-block px-8 py-4 bg-green-600/50 text-white rounded-xl font-bold cursor-not-allowed opacity-50 transition';
+          whatsappBtn.innerHTML = 'Send Screenshot + Details on WhatsApp';
+          whatsappBtn.id = 'whatsapp-btn';
+          whatsappBtn.style.pointerEvents = 'none'; // disable click initially
+
+          document.getElementById('step-qr').appendChild(whatsappBtn);
+
+          // Enable WhatsApp button only after checkbox is checked
+          document.getElementById('payment-confirm')?.addEventListener('change', (e) => {
+            const btn = document.getElementById('whatsapp-btn');
+            if (e.target.checked) {
+              btn.className = 'mt-4 inline-block px-8 py-4 bg-green-600 text-white rounded-xl font-bold hover:bg-green-700 transition shadow-lg';
+              btn.style.pointerEvents = 'auto';
+            } else {
+              btn.className = 'mt-4 inline-block px-8 py-4 bg-green-600/50 text-white rounded-xl font-bold cursor-not-allowed opacity-50 transition';
+              btn.style.pointerEvents = 'none';
             }
           });
+
+          document.getElementById('step-qr').appendChild(whatsappBtn);
+
+
         });
+
+        // document.getElementById('clear-btn')?.addEventListener('click', resetUpiModal);
 
         // Calculator
         document.getElementById('calc-btn')?.addEventListener('click', () => {
@@ -1599,6 +1822,19 @@
               if (content) content.style.maxHeight = content.scrollHeight + 'px';
             }
           });
+        });
+
+        // Scroll reveal for Application Areas (add to your DOMContentLoaded)
+        const appObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.app-area-card').forEach(card => {
+          appObserver.observe(card);
         });
       });
 
