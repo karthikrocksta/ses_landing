@@ -1261,7 +1261,7 @@
               <label for="phone" class="block text-slate-300 mb-2">Mobile Number (10 digits) *</label>
               <input type="tel" id="phone" required pattern="[0-9]{10}" maxlength="10"
                 class="w-full p-5 text-lg bg-slate-800 border border-slate-600 rounded-xl text-white focus:border-blue-500 focus:outline-none invalid:border-red-500"
-                placeholder="9818693338" aria-describedby="phone-error" />
+                placeholder="Your number" aria-describedby="phone-error" />
               <p id="phone-error" class="text-red-400 text-sm mt-1 hidden">Enter exactly 10 digits (no spaces or +91)
               </p>
             </div>
@@ -1703,7 +1703,7 @@
             `Please attach payment screenshot below 👇`
           );
 
-          const whatsappLink = `https://wa.me/9199818693338?text=${whatsappMsg}`;
+          const whatsappLink = `https://wa.me/919818693338?text=${whatsappMsg}`;
 
           // After QR generation...
 
@@ -1747,7 +1747,7 @@
 
         });
 
-        // document.getElementById('clear-btn')?.addEventListener('click', resetUpiModal);
+        document.getElementById('clear-btn')?.addEventListener('click', resetUpiModal);
 
         // Calculator
         document.getElementById('calc-btn')?.addEventListener('click', () => {
