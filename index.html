@@ -14,7 +14,36 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.js"></script>
+  <!-- Optional: worker for better performance (async loading) -->
+  <script>
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.js';
+  </script>
+  <link rel="icon" href="assets/images/supreme-favicon.png" type="image/png" />
+  
+  <!-- PWA Manifest (improved for Android install prompt) -->
+<link rel="manifest" href="data:application/manifest+json,{
+  \"name\": \"Supreme Energy Solutions\",
+  \"short_name\": \"SES\",
+  \"start_url\": \"/\",
+  \"display\": \"standalone\",
+  \"background_color\": \"#ffffff\",
+  \"theme_color\": \"#28A745\",
+  \"icons\": [
+    {\"src\": \"https://via.placeholder.com/192/28a745/ffffff?text=SES\", \"sizes\": \"192x192\", \"type\": \"image/png\", \"purpose\": \"any maskable\"},
+    {\"src\": \"https://via.placeholder.com/512/28a745/ffffff?text=SES\", \"sizes\": \"512x512\", \"type\": \"image/png\", \"purpose\": \"any maskable\"}
+  ]
+}">
 
+<meta name="theme-color" content="#28A745">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="https://via.placeholder.com/180/28a745/ffffff?text=SES">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<script src="https://unpkg.com/qrcode@1.5.4/build/qrcode.min.js"></script>
   <style>
     /* 1. ROOT VARIABLES */
     :root {
@@ -377,6 +406,69 @@
     #qr-code *[title] {
       title: "" !important;
     }
+
+    #paymentModal { display: none; position: fixed; inset: 0; z-index: 9999; }
+
+    .certificate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.certificate-card {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.certificate-card:hover {
+  transform: translateY(-5px);
+}
+
+.image-container {
+  position: relative;
+  aspect-ratio: 4 / 3; /* Keeps all thumbnails uniform */
+  background: #f0f0f0;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Hover Overlay */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0; /* Hidden by default */
+  transition: opacity 0.3s ease;
+}
+
+.overlay span {
+  color: white;
+  border: 2px solid white;
+  padding: 8px 16px;
+  font-weight: bold;
+}
+
+.image-container:hover .overlay {
+  opacity: 1; /* Show on hover */
+}
+
+.info {
+  padding: 15px;
+  background: white;
+}
   </style>
 </head>
 
@@ -404,12 +496,6 @@
             class="nav-link text-[var(--text)] hover:text-[var(--primary)] transition px-3 py-2 rounded-lg hover:bg-[var(--glass-bg)]/50">Home</a>
           <a href="#products"
             class="nav-link text-[var(--text)] hover:text-[var(--primary)] transition px-3 py-2 rounded-lg hover:bg-[var(--glass-bg)]/50">Products</a>
-          <a href="#how-it-works"
-            class="nav-link text-[var(--text)] hover:text-[var(--primary)] transition px-3 py-2 rounded-lg hover:bg-[var(--glass-bg)]/50">How
-            It Works</a>
-          <a href="#application-areas"
-            class="nav-link text-[var(--text)] hover:text-[var(--primary)] transition px-3 py-2 rounded-lg hover:bg-[var(--glass-bg)]/50">Application
-            Areas</a>
           <a href="#faqs"
             class="nav-link text-[var(--text)] hover:text-[var(--primary)] transition px-3 py-2 rounded-lg hover:bg-[var(--glass-bg)]/50">FAQs</a>
           <a href="#about"
@@ -447,6 +533,8 @@
         class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">Application Areas</a>
       <a href="#faqs" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">FAQs</a>
       <a href="#about" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">About</a>
+      <a href="#certifications" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">Certifications</a>
+      <a href="#life-calc" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">Battery Life Calculator</a>
       <a href="#contact" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">Contact</a>
     </div>
 
@@ -549,6 +637,29 @@
             <h3 class="text-2xl font-bold mb-4 text-teal-400">3. Prevention & Maintenance</h3>
             <p class="text-slate-300">Prevents future sulphation, extends battery life 2–3×, and reduces replacement
               costs.</p>
+          </div>
+        </div>
+        <div class="mt-12 text-center">
+          <button class="cta px-10 py-5 text-xl order-now">Order Now</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Placeholder for Amritasa logo / certificate -->
+    <section id="how-it-works" class="py-16 px-6 bg-slate-900/50 animate-on-scroll parallax-layer">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 rainbow-gradient">Authorised Distributor for BLESS</h2>
+        <div class="grid md:grid-cols-1 gap-8">
+          <div class="glass p-8 text-center animate-on-scroll">
+            <h3 class="text-2xl font-bold mb-4 text-blue-400">What We Do</h3>
+            <p class="text-slate-300">Supreme Energy Solutions is proud to be the **Authorised Distributor** of Amritasa's innovative Battery Life Enhancing System (BLESS) in Tamil Nadu and surrounding regions.
+            </p>
+            <!-- <a href="https://amritasa.co.in" target="_blank" class="inline-block bg-green-600 text-white px-10 py-5 rounded-full text-xl font-semibold hover:bg-green-700 transition shadow-lg">
+                Learn More on Amritasa Website →
+              </a> -->
+              <!-- <div class="mt-10">
+                <img src="https://via.placeholder.com/400x200/28a745/ffffff?text=Amritasa+Authorised+Distributor" alt="Amritasa Authorisation" class="mx-auto rounded-xl shadow-lg">
+              </div> -->
           </div>
         </div>
         <div class="mt-12 text-center">
@@ -725,6 +836,96 @@
       </div>
     </section>
 
+    <!-- Certifications & Client Testimonials Carousel -->
+    <section id="certifications" class="py-16 px-6 bg-slate-900/20 animate-on-scroll parallax-layer">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 rainbow-gradient">Certifications & Client Testimonials</h2>
+        
+        <div class="carousel max-w-6xl mx-auto overflow-hidden">
+          <div class="carousel-inner flex transition-transform duration-700 ease-in-out" id="carousel-inner">
+            
+            <div class="carousel-item min-w-full md:min-w-[33.333%] px-4">
+              <div class="testimonial-card glass p-8 text-center hover-subtle h-full flex flex-col items-center">
+                <div class="pdf-trigger cursor-pointer relative group h-64 aspect-[1/1.414] mb-6" onclick="openPdfLightbox('assets/ICAT Certificate/ICAT Certificate.pdf')">
+                  <img src="assets/ICAT Certificate/ICAT Certificate.png" alt="ICAT Certificate" class="w-full h-full object-contain rounded shadow-lg border border-white/10 bg-white/5">
+                  <div class="absolute inset-0 bg-blue-600/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300 rounded backdrop-blur-sm">
+                    <span class="text-white font-bold bg-slate-900/80 px-4 py-2 rounded-full text-xs uppercase">View PDF</span>
+                  </div>
+                </div>
+                <h3 class="text-xl font-semibold rainbow-gradient">ICAT Certificate</h3>
+                <p class="mt-4 text-slate-300 text-sm italic line-clamp-2">"Outstanding achievement in modern architecture."</p>
+              </div>
+            </div>
+    
+            <div class="carousel-item min-w-full md:min-w-[33.333%] px-4">
+              <div class="testimonial-card glass p-8 text-center hover-subtle h-full flex flex-col items-center">
+                <div class="pdf-trigger cursor-pointer relative group h-64 aspect-[1/1.414] mb-6" onclick="openPdfLightbox('assets/CREDA Report/CREDA Report.pdf')">
+                  <img src="assets/CREDA Report/CREDA Report.png" alt="CREDA Report" class="w-full h-full object-contain rounded shadow-lg border border-white/10 bg-white/5">
+                  <div class="absolute inset-0 bg-purple-600/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300 rounded backdrop-blur-sm">
+                    <span class="text-white font-bold bg-slate-900/80 px-4 py-2 rounded-full text-xs uppercase">View Report</span>
+                  </div>
+                </div>
+                <h3 class="text-xl font-semibold rainbow-gradient">CREDA Report</h3>
+                <p class="mt-4 text-slate-300 text-sm italic line-clamp-2">"Demonstrated exceptional skill in design."</p>
+              </div>
+            </div>
+    
+            <div class="carousel-item min-w-full md:min-w-[33.333%] px-4">
+              <div class="testimonial-card glass p-8 text-center hover-subtle h-full flex flex-col items-center">
+                <div class="pdf-trigger cursor-pointer relative group h-64 aspect-[1/1.414] mb-6" onclick="openPdfLightbox('assets/Client Testimonials/CONCOR Report/CONCOR Report.pdf')">
+                  <img src="assets/Client Testimonials/CONCOR Report/CONCOR Report.jpg" alt="CONCOR Report" class="w-full h-full object-contain rounded shadow-lg border border-white/10 bg-white/5">
+                  <div class="absolute inset-0 bg-blue-600/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300 rounded backdrop-blur-sm">
+                    <span class="text-white font-bold bg-slate-900/80 px-4 py-2 rounded-full text-xs uppercase">View PDF</span>
+                  </div>
+                </div>
+                <p class="text-xl font-semibold rainbow-gradient">CONCOR Report</p>
+              </div>
+            </div>
+    
+            <div class="carousel-item min-w-full md:min-w-[33.333%] px-4">
+              <div class="testimonial-card glass p-8 text-center hover-subtle h-full flex flex-col items-center">
+                <div class="pdf-trigger cursor-pointer relative group h-64 aspect-[1/1.414] mb-6" onclick="openPdfLightbox('assets/Client Testimonials/IOCL Report/IOCL Report.pdf')">
+                  <img src="assets/Client Testimonials/IOCL Report/IOCL Report.jpg" alt="IOCL Report" class="w-full h-full object-contain rounded shadow-lg border border-white/10 bg-white/5">
+                  <div class="absolute inset-0 bg-blue-600/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300 rounded backdrop-blur-sm">
+                    <span class="text-white font-bold bg-slate-900/80 px-4 py-2 rounded-full text-xs uppercase">View PDF</span>
+                  </div>
+                </div>
+                <p class="text-xl font-semibold rainbow-gradient">IOCL Report</p>
+              </div>
+            </div>
+    
+            <div class="carousel-item min-w-full md:min-w-[33.333%] px-4">
+              <div class="testimonial-card glass p-8 text-center hover-subtle h-full flex flex-col items-center">
+                <div class="pdf-trigger cursor-pointer relative group h-64 aspect-[1/1.414] mb-6" onclick="openPdfLightbox('assets/Client Testimonials/NSG Report/NSG Report.pdf')">
+                  <img src="assets/Client Testimonials/NSG Report/NSG Report.jpg" alt="NSG Report" class="w-full h-full object-contain rounded shadow-lg border border-white/10 bg-white/5">
+                  <div class="absolute inset-0 bg-blue-600/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300 rounded backdrop-blur-sm">
+                    <span class="text-white font-bold bg-slate-900/80 px-4 py-2 rounded-full text-xs uppercase">View PDF</span>
+                  </div>
+                </div>
+                <p class="text-xl font-semibold rainbow-gradient">NSG Report</p>
+              </div>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <div id="pdfLightbox" class="hidden fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 backdrop-blur-md p-4">
+      <div class="relative w-full max-w-5xl h-[85vh] bg-slate-800 rounded-xl shadow-2xl overflow-hidden border border-white/10">
+        <button onclick="closePdfLightbox()" class="absolute top-4 right-4 z-[10000] bg-white/10 hover:bg-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 text-2xl">
+          &times;
+        </button>
+        
+        <div id="pdfLoader" class="absolute inset-0 flex flex-col items-center justify-center text-white bg-slate-900">
+           <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mb-4"></div>
+           <p class="text-sm font-medium tracking-widest uppercase">Loading Document</p>
+        </div>
+    
+        <iframe id="pdfFrame" src="" class="w-full h-full border-none shadow-inner" onload="document.getElementById('pdfLoader').style.display='none'"></iframe>
+      </div>
+    </div>
+
     <!-- FAQs -->
     <section id="faqs" class="py-16 px-6 bg-slate-900/20 animate-on-scroll parallax-layer">
       <div class="max-w-4xl mx-auto">
@@ -876,7 +1077,7 @@
     <!-- Combined row: Battery Calculator + Get in Touch -->
     <div class="py-16 px-6 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
       <!-- Battery Life Calculator -->
-      <section class="animate-on-scroll parallax-layer">
+      <section id="life-calc" class="animate-on-scroll parallax-layer">
         <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 rainbow-gradient">Battery Life Calculator</h2>
         <div class="max-w-lg mx-auto">
           <section class="py-16 px-6 animate-on-scroll">
@@ -962,7 +1163,7 @@
 
             <p class="text-lg mt-6 mb-2">Email:</p>
             <a href="mailto:krish@supremeenergysolutions.co.in"
-              class="text-2xl text-blue-400 hover:text-blue-300 transition hover-subtle">krish@supremeenergysolutions.co.in</a>
+              class="text-xl text-blue-400 hover:text-blue-300 transition hover-subtle">krish@supremeenergysolutions.co.in</a>
           </div>
         </section>
       </section>
@@ -1748,8 +1949,43 @@
           layer.style.transform = `translateY(${scrollY * 0.15}px)`; // Adjust 0.15 for speed
         });
       });
+
+      function openPdfLightbox(pdfUrl) {
+    const modal = document.getElementById('pdfLightbox');
+    const iframe = document.getElementById('pdfFrame');
+    const loader = document.getElementById('pdfLoader');
+
+    // Show loader and modal
+    loader.style.display = 'flex';
+    modal.classList.remove('hidden');
+    
+    // Set the PDF source
+    iframe.src = pdfUrl;
+
+    // Close on clicking outside the white box
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) closePdfLightbox();
+    });
+}
+
+function closePdfLightbox() {
+    const modal = document.getElementById('pdfLightbox');
+    const iframe = document.getElementById('pdfFrame');
+    
+    // Hide modal
+    modal.classList.add('hidden');
+    
+    // Clear iframe src to stop background loading
+    iframe.src = "";
+}
+
+// Optional: Close on "Escape" key
+document.addEventListener('keydown', (e) => {
+    if (e.key === "Escape") closePdfLightbox();
+});
     </script>
   </main>
+  
 </body>
 
 </html>
