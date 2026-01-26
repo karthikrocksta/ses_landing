@@ -20,30 +20,25 @@
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.js';
   </script>
   <link rel="icon" href="assets/images/supreme-favicon.png" type="image/png" />
-  
+
   <!-- PWA Manifest (improved for Android install prompt) -->
-<link rel="manifest" href="data:application/manifest+json,{
-  \"name\": \"Supreme Energy Solutions\",
-  \"short_name\": \"SES\",
-  \"start_url\": \"/\",
-  \"display\": \"standalone\",
-  \"background_color\": \"#ffffff\",
-  \"theme_color\": \"#28A745\",
-  \"icons\": [
-    {\"src\": \"https://via.placeholder.com/192/28a745/ffffff?text=SES\", \"sizes\": \"192x192\", \"type\": \"image/png\", \"purpose\": \"any maskable\"},
-    {\"src\": \"https://via.placeholder.com/512/28a745/ffffff?text=SES\", \"sizes\": \"512x512\", \"type\": \"image/png\", \"purpose\": \"any maskable\"}
-  ]
-}">
+  <link rel="manifest" href="data:application/manifest+json,{
+    \" name\": \"Supreme Energy Solutions\", \"short_name\": \"SES\", \"start_url\": \"/\", \"display\":
+    \"standalone\", \"background_color\": \"#ffffff\", \"theme_color\": \"#28A745\", \"icons\": [ {\"src\":
+    \"https://via.placeholder.com/192/28a745/ffffff?text=SES\", \"sizes\": \"192x192\", \"type\": \"image/png\",
+    \"purpose\": \"any maskable\"}, {\"src\": \"https://via.placeholder.com/512/28a745/ffffff?text=SES\", \"sizes\":
+    \"512x512\", \"type\": \"image/png\", \"purpose\": \"any maskable\"} ] }">
 
-<meta name="theme-color" content="#28A745">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<link rel="apple-touch-icon" href="https://via.placeholder.com/180/28a745/ffffff?text=SES">
+  <meta name="theme-color" content="#28A745">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="https://via.placeholder.com/180/28a745/ffffff?text=SES">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-<script src="https://unpkg.com/qrcode@1.5.4/build/qrcode.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <script src="https://unpkg.com/qrcode@1.5.4/build/qrcode.min.js"></script>
+
   <style>
     /* 1. ROOT VARIABLES */
     :root {
@@ -60,7 +55,7 @@
       --shadow: 0 10px 40px rgba(0, 0, 0, 0.09);
       --header-bg: rgba(248, 250, 252, 0.97);
     }
-  
+
     [data-theme="dark"] {
       --text: #f1f5f9;
       --text-muted: #e2e8f0;
@@ -72,7 +67,7 @@
       --shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
       --header-bg: rgba(15, 23, 42, 0.94);
     }
-  
+
     /* 2. GLOBAL BASE */
     body {
       background: var(--bg);
@@ -82,7 +77,7 @@
       scroll-behavior: smooth;
       transition: background 0.4s ease, color 0.4s ease;
     }
-  
+
     /* 3. ACCESSIBILITY & MOTION */
     @media (prefers-reduced-motion: reduce) {
       * {
@@ -91,18 +86,18 @@
         transition-duration: 0.01ms !important;
       }
     }
-  
+
     :focus-visible {
       outline: 2px solid var(--primary);
       outline-offset: 2px;
       box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
     }
-  
+
     /* 4. GLASSMORPHISM & NEUMORPHISM */
     .glass,
     .card,
-    #onboarding > div,
-    #upi-modal > div {
+    #onboarding>div,
+    #upi-modal>div {
       background: var(--glass-bg);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
@@ -114,7 +109,7 @@
         var(--shadow);
       transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-  
+
     .glass:hover,
     .card:hover {
       transform: translateY(-4px);
@@ -124,7 +119,7 @@
         0 15px 40px rgba(0, 0, 0, 0.12),
         0 0 30px rgba(59, 130, 246, 0.2);
     }
-  
+
     header {
       background: var(--header-bg);
       backdrop-filter: blur(20px);
@@ -132,23 +127,34 @@
       border-bottom: 1px solid var(--card-border);
       transition: all 0.4s ease;
     }
-  
+
     /* 5. TYPOGRAPHY & VISIBILITY */
-    h1, h2, h3, h4, h5, h6:not(.rainbow-gradient) {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6:not(.rainbow-gradient) {
       color: var(--text);
     }
-  
-    p, span, label, a, li, div:not(.rainbow-gradient), .text-muted {
+
+    p,
+    span,
+    label,
+    a,
+    li,
+    div:not(.rainbow-gradient),
+    .text-muted {
       color: var(--text-muted);
     }
-  
+
     /* Light theme overrides – kept exactly as-is */
     [data-theme="light"] .hero-content p,
     [data-theme="light"] .hero-content span:not(.rainbow-gradient) {
       color: #0f172a !important;
       text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
     }
-  
+
     [data-theme="light"] .text-slate-200,
     [data-theme="light"] .text-slate-300,
     [data-theme="light"] .text-slate-400,
@@ -161,25 +167,25 @@
     [data-theme="light"] div:not(.rainbow-gradient) {
       color: var(--text) !important;
     }
-  
+
     [data-theme="light"] .bg-slate-900\/70,
     [data-theme="light"] .bg-slate-800\/50,
     [data-theme="light"] .bg-slate-900\/30 {
       background: rgba(241, 245, 249, 0.95) !important;
       border-color: rgba(203, 213, 225, 0.6) !important;
     }
-  
+
     [data-theme="light"] .carousel-inner p,
     [data-theme="light"] .carousel-inner span,
     [data-theme="light"] .testimonial-card p {
       color: #0f172a !important;
     }
-  
+
     [data-theme="light"] .text-slate-300,
     [data-theme="light"] .text-slate-400 {
       color: #475569 !important;
     }
-  
+
     [data-theme="light"] .bg-slate-900\/30,
     [data-theme="light"] .bg-slate-900\/20,
     [data-theme="light"] .bg-slate-900\/50,
@@ -188,38 +194,38 @@
       background: rgba(241, 245, 249, 0.8) !important;
       color: #0f172a !important;
     }
-  
+
     [data-theme="light"] .hero-content p {
       color: #1e293b !important;
     }
-  
+
     [data-theme="light"] #how-it-works .bg-slate-900\/70 {
       background: rgba(241, 245, 249, 0.9) !important;
       color: #0f172a !important;
     }
-  
+
     [data-theme="light"] #faqs .bg-slate-900\/20,
     [data-theme="light"] #faqs .accordion-item {
       background: rgba(241, 245, 249, 0.95) !important;
       color: #0f172a !important;
       border-color: rgba(203, 213, 225, 0.6) !important;
     }
-  
+
     [data-theme="light"] #testimonials .bg-slate-900\/20,
     [data-theme="light"] #testimonials .testimonial-card,
     [data-theme="light"] #testimonials .carousel-item {
       background: rgba(241, 245, 249, 0.95) !important;
       color: #0f172a !important;
     }
-  
+
     [data-theme="light"] [class*="text-slate-"] {
       color: #1e293b !important;
     }
-  
+
     [data-theme="light"] .rainbow-gradient {
       color: transparent !important;
     }
-  
+
     /* 6. RAINBOW GRADIENT */
     .rainbow-gradient {
       background: linear-gradient(90deg, #ff6b6b, #ff8e53, #ffcc00, #a8e063, #4facfe, #a78bfa);
@@ -230,19 +236,26 @@
       color: transparent;
       animation: rainbowFlow 12s ease infinite;
     }
-  
+
     @keyframes rainbowFlow {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
+
+      0%,
+      100% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
     }
-  
+
     @supports not (background-clip: text) {
       .rainbow-gradient {
         background: none !important;
         color: var(--primary) !important;
       }
     }
-  
+
     /* 7. FORM ELEMENTS */
     input,
     textarea,
@@ -253,14 +266,14 @@
       box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.05), inset -1px -1px 3px rgba(255, 255, 255, 0.1);
       transition: all 0.3s ease;
     }
-  
+
     input:focus,
     textarea:focus,
     select:focus {
       border-color: var(--primary);
       box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.08), 0 0 0 3px rgba(59, 130, 246, 0.2);
     }
-  
+
     button:not(.rainbow-gradient) {
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
@@ -268,27 +281,27 @@
       color: var(--text);
       transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-  
+
     button:hover:not(.rainbow-gradient) {
       transform: translateY(-2px);
       box-shadow: var(--shadow), inset 2px 2px 4px rgba(255, 255, 255, 0.3), 0 0 20px rgba(59, 130, 246, 0.15);
     }
-  
+
     button:active:not(.rainbow-gradient) {
       transform: translateY(0px);
       box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1), inset -2px -2px 4px rgba(255, 255, 255, 0.6);
     }
-  
+
     /* 8. INTERACTIVE EFFECTS */
     .hover-subtle {
       transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-  
+
     .hover-subtle:hover {
       transform: translateY(-4px) scale(1.02);
       box-shadow: var(--shadow), 0 0 30px rgba(59, 130, 246, 0.25);
     }
-  
+
     .order-now {
       border-radius: 9999px;
       border: 2px solid var(--primary);
@@ -299,81 +312,97 @@
       transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
     }
-  
+
     .order-now:hover {
       transform: translateY(-3px) scale(1.05);
       box-shadow: 0 10px 30px rgba(59, 130, 246, 0.5);
       border-color: var(--secondary);
     }
-  
+
     /* 9. APPLICATION AREAS ANIMATION */
     .app-area-card {
       opacity: 0;
       transform: translateY(60px);
       transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     }
-  
+
     .app-area-card.visible {
       opacity: 1;
       transform: translateY(0);
     }
-  
+
     .app-area-card:hover {
       transform: translateY(-16px) scale(1.05);
       box-shadow: 0 25px 60px rgba(59, 130, 246, 0.35);
     }
-  
+
     /* 10. RESPONSIVE LAYOUTS */
-    .grid-cols-2 > section {
+    .grid-cols-2>section {
       min-height: 600px;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
-  
+
     @media (max-width: 1024px) {
       .lg\:grid-cols-2 {
         grid-template-columns: 1fr;
       }
     }
-  
+
     @media (max-width: 768px) {
       a[href^="https://wa.me"] {
         bottom: 80px;
       }
     }
-  
+
     /* 11. MOBILE MENU */
     #mobile-menu {
       transform: translateX(100%);
       transition: transform 0.5s ease-in-out;
     }
-  
+
     #mobile-menu.translate-x-0 {
       transform: translateX(0);
     }
-  
+
     /* 12. PARALLAX */
     .parallax-layer {
       will-change: transform;
       transition: transform 0.3s ease-out;
     }
-  
+
     .hero {
       overflow: hidden;
     }
-  
+
     #hero-bg-container {
       position: absolute;
       inset: 0;
-      transform: translateY(0);
+      overflow: hidden;
     }
-  
+
+    #hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 1s ease-in-out;
+      /* Smooth crossfade */
+      will-change: opacity;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+    }
+
     /* 13. TOOL TIPS */
     [title] {
       position: relative;
     }
-  
+
     [title]:hover::after {
       content: attr(title);
       position: absolute;
@@ -389,11 +418,11 @@
       opacity: 0;
       transition: opacity 0.2s ease;
     }
-  
+
     [title]:hover::after {
       opacity: 1;
     }
-  
+
     /* 14. QR CODE HOVER DISABLE */
     #qr-code,
     #qr-code * {
@@ -401,96 +430,178 @@
       pointer-events: none !important;
       user-select: none !important;
     }
-  
+
     #qr-code[title],
     #qr-code *[title] {
       title: "" !important;
     }
 
-    #paymentModal { display: none; position: fixed; inset: 0; z-index: 9999; }
+    #paymentModal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+    }
 
     .certificate-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
-}
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
 
-.certificate-card {
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-}
+    .certificate-card {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
 
-.certificate-card:hover {
-  transform: translateY(-5px);
-}
+    .certificate-card:hover {
+      transform: translateY(-5px);
+    }
 
-.image-container {
-  position: relative;
-  aspect-ratio: 4 / 3; /* Keeps all thumbnails uniform */
-  background: #f0f0f0;
-}
+    .image-container {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      /* Keeps all thumbnails uniform */
+      background: #f0f0f0;
+    }
 
-.image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-/* Hover Overlay */
-.overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0; /* Hidden by default */
-  transition: opacity 0.3s ease;
-}
+    /* Hover Overlay */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      /* Hidden by default */
+      transition: opacity 0.3s ease;
+    }
 
-.overlay span {
-  color: white;
-  border: 2px solid white;
-  padding: 8px 16px;
-  font-weight: bold;
-}
+    .overlay span {
+      color: white;
+      border: 2px solid white;
+      padding: 8px 16px;
+      font-weight: bold;
+    }
 
-.image-container:hover .overlay {
-  opacity: 1; /* Show on hover */
-}
+    .image-container:hover .overlay {
+      opacity: 1;
+      /* Show on hover */
+    }
 
-.info {
-  padding: 15px;
-  background: white;
-}
+    .info {
+      padding: 15px;
+      background: white;
+    }
+
+    /* Faster scrolling for application areas */
+    .app-carousel {
+      animation: scroll 3s linear infinite;
+      /* faster timing */
+    }
+
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* Semi-transparent box for BLESS description */
+    .bless-box {
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin: 1.5rem auto;
+      max-width: 90%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Certification & Testimonial stationary cards */
+    .cert-card,
+    .testimonial-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .cert-card:hover,
+    .testimonial-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .highlight {
+      background: #fffacd;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 600;
+    }
   </style>
 </head>
 
 <body>
+  <!-- Sticky CTA (mobile only) -->
+  <div id="stickyCTA"
+    class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-full font-semibold shadow-2xl z-50 md:hidden transition-all duration-300">
+    Order Now – Pay with UPI
+  </div>
+
   <a href="#main-content"
     class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:bg-white dark:focus:bg-slate-800 focus:text-[var(--primary)] focus:px-4 focus:py-2 focus:rounded focus:shadow-lg">
     Skip to main content
   </a>
 
   <main id="main-content" class="min-h-screen">
-    <!-- Header – smaller text, restored logo box -->
+    <!-- Header with Amritasa logo -->
     <header id="header"
       class="fixed top-0 left-0 right-0 z-50 bg-[var(--header-bg)] backdrop-blur-2xl border-b border-[var(--glass-border)] shadow-sm transition-all duration-300">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
-        <!-- Logo -->
-        <a href="#"
-          class="flex items-center logo-container bg-white px-4 py-2 rounded-full shadow-md border border-slate-200 hover:shadow-lg transition-all">
-          <img src="assets/images/supreme-logo.png" alt="Supreme Energy Solutions" class="logo-img h-9 md:h-11"
-            loading="lazy" />
-        </a>
 
-        <!-- Navigation – smaller, centered alignment -->
+        <!-- Logo Section – Supreme on top, Marketing Partner text, Amritasa below -->
+        <div class="flex items-center gap-4">
+          <a href="#"
+            class="flex items-center logo-container bg-white px-4 py-2 rounded-full shadow-md border border-slate-200 hover:shadow-lg transition-all">
+
+            <div class="flex flex-col">
+              <!-- Supreme Logo -->
+              <img src="assets/images/supreme-logo.png" alt="Supreme Energy Solutions" class="logo-img h-9 md:h-11"
+                loading="lazy" />
+
+              <!-- Marketing Partner text -->
+              <!-- <span class="text-sm md:text-base font-medium text-gray-600 dark:text-gray-400 tracking-wide">
+                  MARKETING PARTNER
+                </span> -->
+
+              <!-- Amritasa Logo -->
+              <!-- <img 
+                  src="assets/images/amritasa-logo.png" alt="Amritasa" class="h-10 md:h-14 w-auto object-contain"
+                  loading="lazy"
+                /> -->
+            </div>
+          </a>
+        </div>
+
+        <!-- Navigation -->
         <nav class="hidden md:flex items-center gap-13 lg:gap-8 text-base font-medium">
           <a href="#"
             class="nav-link text-[var(--text)] hover:text-[var(--primary)] transition px-3 py-2 rounded-lg hover:bg-[var(--glass-bg)]/50">Home</a>
@@ -504,7 +615,7 @@
             class="nav-link text-[var(--text)] hover:text-[var(--primary)] transition px-3 py-2 rounded-lg hover:bg-[var(--glass-bg)]/50">Contact</a>
         </nav>
 
-        <!-- Theme toggle – aligned, swanky, no floating -->
+        <!-- Theme & Mobile toggle -->
         <div class="flex items-center gap-4">
           <label class="relative inline-flex items-center cursor-pointer">
             <input type="checkbox" id="theme-toggle" class="sr-only peer">
@@ -533,8 +644,10 @@
         class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">Application Areas</a>
       <a href="#faqs" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">FAQs</a>
       <a href="#about" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">About</a>
-      <a href="#certifications" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">Certifications</a>
-      <a href="#life-calc" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">Battery Life Calculator</a>
+      <a href="#certifications"
+        class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">Certifications</a>
+      <a href="#life-calc" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">Battery Life
+        Calculator</a>
       <a href="#contact" class="nav-link text-2xl text-white hover:text-[var(--primary)] transition">Contact</a>
     </div>
 
@@ -547,6 +660,10 @@
         <select id="location-select"
           class="w-full p-4 bg-slate-800 border border-slate-600 rounded-xl text-white focus:outline-none focus:border-blue-500 text-lg">
           <option value="" disabled selected>Choose District</option>
+          <option value="Bengaluru">Bengaluru</option>
+          <option value="Mysuru">Mysuru</option>
+          <option value="Tumkur">Tumkur</option>
+          <!-- <option value="soon" disabled> (Coming Soon)</option> -->
           <option value="Ariyalur">Ariyalur</option>
           <option value="Chengalpattu">Chengalpattu</option>
           <option value="Chennai">Chennai</option>
@@ -585,8 +702,6 @@
           <option value="Vellore">Vellore</option>
           <option value="Viluppuram">Viluppuram</option>
           <option value="Virudhunagar">Virudhunagar</option>
-          <option value="soon" disabled>Bengaluru (Coming Soon)</option>
-          <option value="soon" disabled>Tumkur (Coming Soon)</option>
         </select>
         <div id="snackbar" class="mt-6 p-4 bg-red-600/90 rounded-xl text-center hidden">Coming Soon!</div>
       </div>
@@ -605,15 +720,48 @@
           Revive your batteries.<br>
           <span class="animate-float">Extend life sustainably.</span>
         </h1>
-        <p class="text-xl md:text-2xl text-[var(--text)] max-w-3xl mx-auto mb-10 font-medium">
-          BLESS – external desulfation technology that restores capacity, cuts replacement costs, and supports a greener
-          future.
-        </p>
+        <!-- <p class="text-xl md:text-2xl text-[var(--text)] max-w-3xl mx-auto mb-10 font-medium"> -->
+        <div
+          class="bless-box bg-white/1 backdrop-blur-md border border-white/20 text-xl md:text-6xl font-bold tracking-tight mb-6 leading-tight text-white md:text-2xl max-w-3xl mx-auto mb-10">
+
+          <h1 class="text-xl font-bold tracking-tight leading-tight text-white">
+            BLESS – external desulfation technology that restores capacity, cuts replacement costs, and supports a
+            greener future.
+          </h1>
+        </div>
         <div class="flex flex-col sm:flex-row gap-6 justify-center">
           <button class="cta px-10 py-5 text-xl order-now hover-subtle">Order Now</button>
           <button
             class="px-10 py-5 bg-[var(--glass-bg)] border border-[var(--glass-border)] rounded-xl text-xl font-semibold hover:bg-[var(--glass-bg)]/80 transition hover-subtle"
             onclick="document.getElementById('how-it-works').scrollIntoView({behavior:'smooth'})">Learn More</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Marketing Partners / Authorised Distributor for Amritasa -->
+    <section id="how-it-works" class="py-16 px-6 bg-slate-900/50 animate-on-scroll parallax-layer">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 rainbow-gradient">Authorised Distributor & Marketing
+          Partners
+        </h2>
+        <div class="grid md:grid-cols-1 gap-8">
+          <div class="glass p-8 text-center animate-on-scroll">
+            <!-- <h3 class="text-2xl font-bold mb-4 text-blue-400">What We Do</h3> -->
+            <p class="text-slate-300">Supreme Energy Solutions is proud to be the <b>Authorised Distributor</b> of
+              Amritasa's
+              innovative Battery Life Enhancing System (BLESS) in Tamil Nadu and surrounding regions.
+            </p>
+            <div class="mt-1 mb-5 flex justify-center">
+              <img src="assets/images/amritasa-logo.png" alt="Amritasa Authorised Distributor" class="max-h-32">
+            </div>
+            <a href="https://amritasa.co.in" target="_blank"
+              class="inline-block bg-green-600 text-white px-10 py-5 rounded-full text-xl font-semibold hover:bg-green-700 transition shadow-lg">
+              Visit Amritasa Website →
+            </a>
+          </div>
+        </div>
+        <div class="mt-12 text-center">
+          <button class="cta px-10 py-5 text-xl order-now">Order Now</button>
         </div>
       </div>
     </section>
@@ -645,30 +793,7 @@
       </div>
     </section>
 
-    <!-- Placeholder for Amritasa logo / certificate -->
-    <section id="how-it-works" class="py-16 px-6 bg-slate-900/50 animate-on-scroll parallax-layer">
-      <div class="max-w-6xl mx-auto">
-        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 rainbow-gradient">Authorised Distributor for BLESS</h2>
-        <div class="grid md:grid-cols-1 gap-8">
-          <div class="glass p-8 text-center animate-on-scroll">
-            <h3 class="text-2xl font-bold mb-4 text-blue-400">What We Do</h3>
-            <p class="text-slate-300">Supreme Energy Solutions is proud to be the **Authorised Distributor** of Amritasa's innovative Battery Life Enhancing System (BLESS) in Tamil Nadu and surrounding regions.
-            </p>
-            <!-- <a href="https://amritasa.co.in" target="_blank" class="inline-block bg-green-600 text-white px-10 py-5 rounded-full text-xl font-semibold hover:bg-green-700 transition shadow-lg">
-                Learn More on Amritasa Website →
-              </a> -->
-              <!-- <div class="mt-10">
-                <img src="https://via.placeholder.com/400x200/28a745/ffffff?text=Amritasa+Authorised+Distributor" alt="Amritasa Authorisation" class="mx-auto rounded-xl shadow-lg">
-              </div> -->
-          </div>
-        </div>
-        <div class="mt-12 text-center">
-          <button class="cta px-10 py-5 text-xl order-now">Order Now</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Application Areas – Elementor-like design -->
+    <!-- Application Areas with faster scrolling images -->
     <section id="application-areas"
       class="py-16 px-6 bg-slate-900/30 border-y border-slate-800/50 animate-on-scroll parallax-layer">
       <div class="max-w-6xl mx-auto">
@@ -839,90 +964,117 @@
     <!-- Certifications & Client Testimonials Carousel -->
     <section id="certifications" class="py-16 px-6 bg-slate-900/20 animate-on-scroll parallax-layer">
       <div class="max-w-7xl mx-auto">
-        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 rainbow-gradient">Certifications & Client Testimonials</h2>
-        
+        <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 rainbow-gradient">Certifications & Client
+          Testimonials</h2>
+
         <div class="carousel max-w-6xl mx-auto overflow-hidden">
           <div class="carousel-inner flex transition-transform duration-700 ease-in-out" id="carousel-inner">
-            
+
             <div class="carousel-item min-w-full md:min-w-[33.333%] px-4">
               <div class="testimonial-card glass p-8 text-center hover-subtle h-full flex flex-col items-center">
-                <div class="pdf-trigger cursor-pointer relative group h-64 aspect-[1/1.414] mb-6" onclick="openPdfLightbox('assets/ICAT Certificate/ICAT Certificate.pdf')">
-                  <img src="assets/ICAT Certificate/ICAT Certificate.png" alt="ICAT Certificate" class="w-full h-full object-contain rounded shadow-lg border border-white/10 bg-white/5">
-                  <div class="absolute inset-0 bg-blue-600/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300 rounded backdrop-blur-sm">
-                    <span class="text-white font-bold bg-slate-900/80 px-4 py-2 rounded-full text-xs uppercase">View PDF</span>
+                <div class="pdf-trigger cursor-pointer relative group h-64 aspect-[1/1.414] mb-6"
+                  onclick="openPdfLightbox('assets/ICAT Certificate/ICAT Certificate.pdf')">
+                  <img src="assets/ICAT Certificate/ICAT Certificate.png" alt="ICAT Certificate"
+                    class="w-full h-full object-contain rounded shadow-lg border border-white/10 bg-white/5">
+                  <div
+                    class="absolute inset-0 bg-blue-600/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300 rounded backdrop-blur-sm">
+                    <span class="text-white font-bold bg-slate-900/80 px-4 py-2 rounded-full text-xs uppercase">View
+                      PDF</span>
                   </div>
                 </div>
                 <h3 class="text-xl font-semibold rainbow-gradient">ICAT Certificate</h3>
-                <p class="mt-4 text-slate-300 text-sm italic line-clamp-2">"Outstanding achievement in modern architecture."</p>
+                <p class="mt-4 text-slate-300 text-sm italic line-clamp-2">"Outstanding achievement in modern
+                  architecture."</p>
               </div>
             </div>
-    
+
             <div class="carousel-item min-w-full md:min-w-[33.333%] px-4">
               <div class="testimonial-card glass p-8 text-center hover-subtle h-full flex flex-col items-center">
-                <div class="pdf-trigger cursor-pointer relative group h-64 aspect-[1/1.414] mb-6" onclick="openPdfLightbox('assets/CREDA Report/CREDA Report.pdf')">
-                  <img src="assets/CREDA Report/CREDA Report.png" alt="CREDA Report" class="w-full h-full object-contain rounded shadow-lg border border-white/10 bg-white/5">
-                  <div class="absolute inset-0 bg-purple-600/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300 rounded backdrop-blur-sm">
-                    <span class="text-white font-bold bg-slate-900/80 px-4 py-2 rounded-full text-xs uppercase">View Report</span>
+                <div class="pdf-trigger cursor-pointer relative group h-64 aspect-[1/1.414] mb-6"
+                  onclick="openPdfLightbox('assets/CREDA Report/CREDA Report.pdf')">
+                  <img src="assets/CREDA Report/CREDA Report.png" alt="CREDA Report"
+                    class="w-full h-full object-contain rounded shadow-lg border border-white/10 bg-white/5">
+                  <div
+                    class="absolute inset-0 bg-purple-600/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300 rounded backdrop-blur-sm">
+                    <span class="text-white font-bold bg-slate-900/80 px-4 py-2 rounded-full text-xs uppercase">View
+                      Report</span>
                   </div>
                 </div>
                 <h3 class="text-xl font-semibold rainbow-gradient">CREDA Report</h3>
-                <p class="mt-4 text-slate-300 text-sm italic line-clamp-2">"Demonstrated exceptional skill in design."</p>
+                <p class="mt-4 text-slate-300 text-sm italic line-clamp-2">"Demonstrated exceptional skill in design."
+                </p>
               </div>
             </div>
-    
+
             <div class="carousel-item min-w-full md:min-w-[33.333%] px-4">
               <div class="testimonial-card glass p-8 text-center hover-subtle h-full flex flex-col items-center">
-                <div class="pdf-trigger cursor-pointer relative group h-64 aspect-[1/1.414] mb-6" onclick="openPdfLightbox('assets/Client Testimonials/CONCOR Report/CONCOR Report.pdf')">
-                  <img src="assets/Client Testimonials/CONCOR Report/CONCOR Report.jpg" alt="CONCOR Report" class="w-full h-full object-contain rounded shadow-lg border border-white/10 bg-white/5">
-                  <div class="absolute inset-0 bg-blue-600/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300 rounded backdrop-blur-sm">
-                    <span class="text-white font-bold bg-slate-900/80 px-4 py-2 rounded-full text-xs uppercase">View PDF</span>
+                <div class="pdf-trigger cursor-pointer relative group h-64 aspect-[1/1.414] mb-6"
+                  onclick="openPdfLightbox('assets/Client Testimonials/CONCOR Report/CONCOR Report.pdf')">
+                  <img src="assets/Client Testimonials/CONCOR Report/CONCOR Report.jpg" alt="CONCOR Report"
+                    class="w-full h-full object-contain rounded shadow-lg border border-white/10 bg-white/5">
+                  <div
+                    class="absolute inset-0 bg-blue-600/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300 rounded backdrop-blur-sm">
+                    <span class="text-white font-bold bg-slate-900/80 px-4 py-2 rounded-full text-xs uppercase">View
+                      PDF</span>
                   </div>
                 </div>
                 <p class="text-xl font-semibold rainbow-gradient">CONCOR Report</p>
               </div>
             </div>
-    
+
             <div class="carousel-item min-w-full md:min-w-[33.333%] px-4">
               <div class="testimonial-card glass p-8 text-center hover-subtle h-full flex flex-col items-center">
-                <div class="pdf-trigger cursor-pointer relative group h-64 aspect-[1/1.414] mb-6" onclick="openPdfLightbox('assets/Client Testimonials/IOCL Report/IOCL Report.pdf')">
-                  <img src="assets/Client Testimonials/IOCL Report/IOCL Report.jpg" alt="IOCL Report" class="w-full h-full object-contain rounded shadow-lg border border-white/10 bg-white/5">
-                  <div class="absolute inset-0 bg-blue-600/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300 rounded backdrop-blur-sm">
-                    <span class="text-white font-bold bg-slate-900/80 px-4 py-2 rounded-full text-xs uppercase">View PDF</span>
+                <div class="pdf-trigger cursor-pointer relative group h-64 aspect-[1/1.414] mb-6"
+                  onclick="openPdfLightbox('assets/Client Testimonials/IOCL Report/IOCL Report.pdf')">
+                  <img src="assets/Client Testimonials/IOCL Report/IOCL Report.jpg" alt="IOCL Report"
+                    class="w-full h-full object-contain rounded shadow-lg border border-white/10 bg-white/5">
+                  <div
+                    class="absolute inset-0 bg-blue-600/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300 rounded backdrop-blur-sm">
+                    <span class="text-white font-bold bg-slate-900/80 px-4 py-2 rounded-full text-xs uppercase">View
+                      PDF</span>
                   </div>
                 </div>
                 <p class="text-xl font-semibold rainbow-gradient">IOCL Report</p>
               </div>
             </div>
-    
+
             <div class="carousel-item min-w-full md:min-w-[33.333%] px-4">
               <div class="testimonial-card glass p-8 text-center hover-subtle h-full flex flex-col items-center">
-                <div class="pdf-trigger cursor-pointer relative group h-64 aspect-[1/1.414] mb-6" onclick="openPdfLightbox('assets/Client Testimonials/NSG Report/NSG Report.pdf')">
-                  <img src="assets/Client Testimonials/NSG Report/NSG Report.jpg" alt="NSG Report" class="w-full h-full object-contain rounded shadow-lg border border-white/10 bg-white/5">
-                  <div class="absolute inset-0 bg-blue-600/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300 rounded backdrop-blur-sm">
-                    <span class="text-white font-bold bg-slate-900/80 px-4 py-2 rounded-full text-xs uppercase">View PDF</span>
+                <div class="pdf-trigger cursor-pointer relative group h-64 aspect-[1/1.414] mb-6"
+                  onclick="openPdfLightbox('assets/Client Testimonials/NSG Report/NSG Report.pdf')">
+                  <img src="assets/Client Testimonials/NSG Report/NSG Report.jpg" alt="NSG Report"
+                    class="w-full h-full object-contain rounded shadow-lg border border-white/10 bg-white/5">
+                  <div
+                    class="absolute inset-0 bg-blue-600/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all duration-300 rounded backdrop-blur-sm">
+                    <span class="text-white font-bold bg-slate-900/80 px-4 py-2 rounded-full text-xs uppercase">View
+                      PDF</span>
                   </div>
                 </div>
                 <p class="text-xl font-semibold rainbow-gradient">NSG Report</p>
               </div>
             </div>
-    
+
           </div>
         </div>
       </div>
     </section>
-    
-    <div id="pdfLightbox" class="hidden fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 backdrop-blur-md p-4">
-      <div class="relative w-full max-w-5xl h-[85vh] bg-slate-800 rounded-xl shadow-2xl overflow-hidden border border-white/10">
-        <button onclick="closePdfLightbox()" class="absolute top-4 right-4 z-[10000] bg-white/10 hover:bg-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 text-2xl">
+
+    <div id="pdfLightbox"
+      class="hidden fixed inset-0 z-[9999] flex items-center justify-center bg-black/90 backdrop-blur-md p-4">
+      <div
+        class="relative w-full max-w-5xl h-[85vh] bg-slate-800 rounded-xl shadow-2xl overflow-hidden border border-white/10">
+        <button onclick="closePdfLightbox()"
+          class="absolute top-4 right-4 z-[10000] bg-white/10 hover:bg-red-500 text-white w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 text-2xl">
           &times;
         </button>
-        
+
         <div id="pdfLoader" class="absolute inset-0 flex flex-col items-center justify-center text-white bg-slate-900">
-           <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mb-4"></div>
-           <p class="text-sm font-medium tracking-widest uppercase">Loading Document</p>
+          <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500 mb-4"></div>
+          <p class="text-sm font-medium tracking-widest uppercase">Loading Document</p>
         </div>
-    
-        <iframe id="pdfFrame" src="" class="w-full h-full border-none shadow-inner" onload="document.getElementById('pdfLoader').style.display='none'"></iframe>
+
+        <iframe id="pdfFrame" src="" class="w-full h-full border-none shadow-inner"
+          onload="document.getElementById('pdfLoader').style.display='none'"></iframe>
       </div>
     </div>
 
@@ -1130,8 +1282,11 @@
       <section id="contact" class="animate-on-scroll parallax-layer">
 
         <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 rainbow-gradient">Get in Touch</h2>
-        <section id="contact" class="py-16 px-6  animate-on-scroll">
-          <p class="text-xl text-slate-300 mb-8">Questions? Ready to revive your batteries? Reach out directly.</p>
+        <section id="contact" class="py-16 px-6  animate-on-scroll text-center">
+          <p class="text-xl text-slate-300 mb-6">Questions? Ready to revive your batteries? Reach out directly.</p>
+          <p class="text-xl text-slate-300 mb-2"><b>Supreme Energy Solutions</p>b></p>
+          <p class="text-lg text-slate-300 mb-2">629, Anbil Dharmalingam Salai (W)</p>
+          <p class="text-lg text-slate-300 mb-2">KK Nagar, Tiruchirappalli – 620021</p>
 
           <!-- Battery image with hover animation + Order Now buttons -->
           <div class="my-12 flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
@@ -1139,7 +1294,7 @@
                 Order Now
               </button> -->
 
-            <div class="relative group w-64 md:w-80">
+            <div class="relative group w-64 md:w-40">
               <img src="assets/images/bless-battery-device.jpg"
                 alt="BLESS Battery Life Enhancing System - Don't Change Battery"
                 class="w-full h-auto rounded-2xl shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:rotate-2 group-hover:shadow-[0_25px_50px_-12px_rgba(59,130,246,0.5)]"
@@ -1158,10 +1313,10 @@
               Order Now
             </button>
             <p class="text-lg mb-2">Call / WhatsApp:</p>
-            <a href="tel:+919818693338"
-              class="text-3xl font-bold text-blue-400 hover:text-blue-300 transition hover-subtle">+91 9818693338</a>
+            <a href="tel:+918076352327"
+              class="text-3xl font-bold text-blue-400 hover:text-blue-300 transition hover-subtle">+91 8076352327</a>
 
-            <p class="text-lg mt-6 mb-2">Email:</p>
+            <p class="text-lg mt-2">Email:</p>
             <a href="mailto:krish@supremeenergysolutions.co.in"
               class="text-xl text-blue-400 hover:text-blue-300 transition hover-subtle">krish@supremeenergysolutions.co.in</a>
           </div>
@@ -1216,7 +1371,8 @@
           <div>
             <h4 class="font-semibold text-[var(--text)] mb-3">Support</h4>
             <ul class="space-y-2">
-              <li><a href="tel:+919818693338" class="hover:text-[var(--primary)] transition">+91 9818693338</a></li>
+              <li><a href="tel:+918076232327" class="hover:text-[var(--primary)] transition">+91 8076232327</a></li>
+              <li><a href="tel:+917373771164" class="hover:text-[var(--primary)] transition">+91 7373771164</a></li>
               <li><a href="mailto:krish@supremeenergysolutions.co.in"
                   class="hover:text-[var(--primary)] transition">Email
                   Us</a></li>
@@ -1240,7 +1396,7 @@
                     d="M23.498 6.186c-.267-1.003-1.05-1.79-2.05-2.057C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.448.629c-1 .267-1.783 1.054-2.05 2.057C0 8.13 0 12 0 12s0 3.87.502 5.814c.267 1.003 1.05 1.79 2.05 2.057C4.495 20.5 12 20.5 12 20.5s7.505 0 9.448-.629c1-.267 1.783-1.054 2.05-2.057C24 15.87 24 12 24 12s0-3.87-.502-5.814zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" />
                 </svg>
               </a>
-              <a href="https://wa.me/919818693338" target="_blank" rel="noopener noreferrer"
+              <a href="https://wa.me/919871107904" target="_blank" rel="noopener noreferrer"
                 class="social-btn text-green-500 hover:text-green-400 transition hover-subtle">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                   class="w-14 h-14 md:w-16 md:h-16">
@@ -1273,7 +1429,7 @@
     </div>
 
     <!-- Sticky WhatsApp button – same logo as footer -->
-    <a href="https://wa.me/919818693338?text=Hi%20Supreme%20Energy%20Solutions!%20I%20want%20to%20know%20more%20about%20BLESS..."
+    <a href="https://wa.me/918076352327?text=Hi%20Supreme%20Energy%20Solutions!%20I%20want%20to%20know%20more%20about%20BLESS..."
       target="_blank"
       class="fixed bottom-24 right-6 md:bottom-6 md:right-8 z-50 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 hover:scale-110 transition-all duration-300 hover-subtle flex items-center justify-center"
       aria-label="Chat on WhatsApp" title="Chat on WhatsApp">
@@ -1528,22 +1684,41 @@
 
         // Hero slider
         const heroBg = document.getElementById('hero-bg');
+        if (!heroBg) return;
+
         const backgrounds = [
           'assets/images/hero-bg-1.webp',
           'assets/images/hero-bg-2.webp',
           // 'assets/images/hero-bg-3.webp',
           'assets/images/hero-bg-4.webp',
-          'assets/images/hero-bg-5.webp'
+          'assets/images/hero-bg-5.webp',
+          'assets/images/hero-bg-6.webp',
+          'assets/images/hero-bg-7.webp',
+          'assets/images/hero-bg-8.webp',
+          'assets/images/hero-bg-9.webp',
         ];
-        let currentBg = 0;
+
+        let currentIndex = 0;
+
+        // Preload all images to prevent flicker
+        backgrounds.forEach(src => {
+          const img = new Image();
+          img.src = src;
+        });
+
+        // Change background every 12 seconds with crossfade
         setInterval(() => {
-          currentBg = (currentBg + 1) % backgrounds.length;
-          heroBg.style.opacity = 0;
+          currentIndex = (currentIndex + 1) % backgrounds.length;
+
+          // First fade out current image
+          heroBg.style.opacity = '0';
+
+          // Wait for fade out, then change src and fade in
           setTimeout(() => {
-            heroBg.src = backgrounds[currentBg];
-            heroBg.style.opacity = 1;
-          }, 800);
-        }, 12000);
+            heroBg.src = backgrounds[currentIndex];
+            heroBg.style.opacity = '1';
+          }, 2000); // Match this to your transition duration
+        }, 5000);
 
         // UPI Modal with best-practice validation
         const upiModal = document.getElementById('upi-modal');
@@ -1700,7 +1875,10 @@
               'Vellore': '632',
               'Viluppuram': '605',
               'Virudhunagar': '626',
-              'Unknown': '000'
+              'Bengaluru': '560',
+              'Mysuru': '570',
+              'Tumkur': '572',
+              'Unknown': '000',
             };
             document.getElementById('pin-prefix').value = pinPrefixes[district] || '000';
 
@@ -1806,17 +1984,17 @@
             `Please attach payment screenshot below 👇`
           );
 
-          const whatsappLink = `https://wa.me/919818693338?text=${whatsappMsg}`;
+          const whatsappLink = `https://wa.me/918076352327?text=${whatsappMsg}`;
 
           // After QR generation...
 
           // Confirmation checkbox to make WhatsApp mandatory after payment
           const confirmCheckbox = document.createElement('div');
           confirmCheckbox.innerHTML = `
-  <label class="flex items-center justify-center mt-6 text-slate-300 cursor-pointer">
-    <input type="checkbox" id="payment-confirm" class="mr-3 w-6 h-6 accent-green-500">
-    I have completed the UPI payment
-  </label>
+<label class="flex items-center justify-center mt-6 text-slate-300 cursor-pointer">
+<input type="checkbox" id="payment-confirm" class="mr-3 w-6 h-6 accent-green-500">
+I have completed the UPI payment
+</label>
 `;
 
           document.getElementById('step-qr').appendChild(confirmCheckbox);
@@ -1880,12 +2058,12 @@
           const extraMonths = Math.round(boostedLife - remainingLife);
 
           document.getElementById('calc-result').innerHTML = `
-            <span class="text-cyan-400">
-              Without BLESS: ~${Math.round(remainingLife)} months remaining<br>
-              With BLESS: ~${Math.round(boostedLife)} months total<br>
-              Extra life gained: <strong>${extraMonths}</strong> months
-            </span>
-          `;
+        <span class="text-cyan-400">
+          Without BLESS: ~${Math.round(remainingLife)} months remaining<br>
+          With BLESS: ~${Math.round(boostedLife)} months total<br>
+          Extra life gained: <strong>${extraMonths}</strong> months
+        </span>
+      `;
 
           const progress = document.getElementById('progress');
           const fill = document.querySelector('.progress-fill');
@@ -1951,41 +2129,41 @@
       });
 
       function openPdfLightbox(pdfUrl) {
-    const modal = document.getElementById('pdfLightbox');
-    const iframe = document.getElementById('pdfFrame');
-    const loader = document.getElementById('pdfLoader');
+        const modal = document.getElementById('pdfLightbox');
+        const iframe = document.getElementById('pdfFrame');
+        const loader = document.getElementById('pdfLoader');
 
-    // Show loader and modal
-    loader.style.display = 'flex';
-    modal.classList.remove('hidden');
-    
-    // Set the PDF source
-    iframe.src = pdfUrl;
+        // Show loader and modal
+        loader.style.display = 'flex';
+        modal.classList.remove('hidden');
 
-    // Close on clicking outside the white box
-    modal.addEventListener('click', function(e) {
-        if (e.target === modal) closePdfLightbox();
-    });
-}
+        // Set the PDF source
+        iframe.src = pdfUrl;
 
-function closePdfLightbox() {
-    const modal = document.getElementById('pdfLightbox');
-    const iframe = document.getElementById('pdfFrame');
-    
-    // Hide modal
-    modal.classList.add('hidden');
-    
-    // Clear iframe src to stop background loading
-    iframe.src = "";
-}
+        // Close on clicking outside the white box
+        modal.addEventListener('click', function (e) {
+          if (e.target === modal) closePdfLightbox();
+        });
+      }
 
-// Optional: Close on "Escape" key
-document.addEventListener('keydown', (e) => {
-    if (e.key === "Escape") closePdfLightbox();
-});
+      function closePdfLightbox() {
+        const modal = document.getElementById('pdfLightbox');
+        const iframe = document.getElementById('pdfFrame');
+
+        // Hide modal
+        modal.classList.add('hidden');
+
+        // Clear iframe src to stop background loading
+        iframe.src = "";
+      }
+
+      // Optional: Close on "Escape" key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === "Escape") closePdfLightbox();
+      });
     </script>
   </main>
-  
+
 </body>
 
 </html>
